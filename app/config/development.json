@@ -1,0 +1,11 @@
+{
+  "host": "http://localhost:3000",
+  "dbURI":"admin:admin@ds137530.mlab.com:37530/multimedialibrary",
+  "sessionSecret": "catscanfly",
+  "fb": {
+    "clientID": "1937448086489474",
+    "clientSecret": "0c27707698baa71e180353adc3c3e79b",
+    "callbackURL": "//localhost:3000/auth/facebook/callback",
+    "profileFields" : ["id", "displayName", "photos"]
+  }
+}

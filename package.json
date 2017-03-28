@@ -1,0 +1,29 @@
+{
+  "name": "photoshare-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikm0111/photoshare-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erikm0111/photoshare-app/issues"
+  },
+  "homepage": "https://github.com/erikm0111/photoshare-app#readme",
+  "dependencies": {
+    "connect-mongo": "1.1.0",
+    "ejs": "2.3.4",
+    "express": "^4.13.3",
+    "express-session": "1.12.1",
+    "mongoose": "4.3.1",
+    "passport": "0.3.2",
+    "passport-facebook": "2.0.0",
+    "socket.io": "^1.7.3"
+  }
+}
