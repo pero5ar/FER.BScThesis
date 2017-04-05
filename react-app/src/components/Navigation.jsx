@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import {
     Nav,
     Navbar,
@@ -8,7 +8,6 @@ import {
     FormControl,
     Button
 } from 'react-bootstrap/lib/';
-
 
 class Navigation extends Component {
     render() {
@@ -20,7 +19,7 @@ class Navigation extends Component {
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
-                    <NavItem href="/offer">Vlastite ponude</NavItem>
+                    <NavItem onClick={e => this.props.history.push("/offer")} >Vlastite ponude</NavItem>
                     <Navbar.Form pullLeft>
                         <FormGroup>
                             <FormControl type="text" placeholder="Pretraži ponude"/>
@@ -30,8 +29,8 @@ class Navigation extends Component {
                     </Navbar.Form>
                 </Nav>
                 <Nav pullRight>
-                    <NavItem eventKey={1} href="/notifications">Obavijesti</NavItem>
-                    <NavItem eventKey={2} href="/profile">Profil</NavItem>
+                    <NavItem eventKey={1} onClick={e => this.props.history.push("/notifications")}  >Obavijesti</NavItem>
+                    <NavItem eventKey={2} onClick={e => this.props.history.push("/profile")} >Profil</NavItem>
                     <NavItem eventKey={3} href="#">Odjava</NavItem>
                 </Nav>
             </Navbar>
