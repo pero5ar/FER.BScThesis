@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { NavLink } from 'react-router-dom'
 import {
     Nav,
     Navbar,
@@ -8,17 +9,18 @@ import {
     Button
 } from 'react-bootstrap/lib/';
 
+
 class Navigation extends Component {
     render() {
         return (
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#">Prometej</a>
+                        <NavLink to="/">Prometej</NavLink>
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
-                    <NavItem href="#">Vlastite ponude</NavItem>
+                    <NavItem href="/offer">Vlastite ponude</NavItem>
                     <Navbar.Form pullLeft>
                         <FormGroup>
                             <FormControl type="text" placeholder="Pretraži ponude"/>
@@ -28,9 +30,9 @@ class Navigation extends Component {
                     </Navbar.Form>
                 </Nav>
                 <Nav pullRight>
-                    <NavItem href="#">Obavijesti</NavItem>
-                    <NavItem href="#">Profil</NavItem>
-                    <NavItem href="#">Odjava</NavItem>
+                    <NavItem eventKey={1} href="/notifications">Obavijesti</NavItem>
+                    <NavItem eventKey={2} href="/profile">Profil</NavItem>
+                    <NavItem eventKey={3} href="#">Odjava</NavItem>
                 </Nav>
             </Navbar>
         );
