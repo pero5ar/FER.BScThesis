@@ -1,0 +1,8 @@
+a:hover {
+    text-decoration: none;
+    -moz-text-decoration: none;
+}
+
+.thumbnail:hover {
+    background-color: #e7e7e7;
+}
