@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Grid} from 'react-bootstrap/lib';
 import Navigation from './components/Navigation';
-import ItemThumbnailContainer from './components/item/ItemThumbnailContainer';
-import ItemDetails from './components/item/itemDetails';
+import Main from './components/Main';
+import ItemDetails from './components/item/ItemDetails';
 import OfferContainer from './components/offer/OfferContainer';
 import NotificationContainer from './components/notification/NotificationContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
@@ -17,7 +17,7 @@ class App extends Component {
                 <div>
                     <NavigationWithRouter />
                     <Grid>
-                        <Route exact path="/" component={ItemThumbnailContainer}/>
+                        <Route exact path="/" component={Main}/>
                         <Route path="/item/:id" component={ItemDetails}/>
                         <Route path="/offer" component={OfferContainer}/>
                         <Route path="/notifications" component={NotificationContainer}/>

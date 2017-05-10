@@ -4,7 +4,7 @@ class ItemDetails extends Component {
     render() {
         return (
             <div>
-                DETALJI
+                DETALJI od {this.props.match.params.id}
             </div>
         );
     }

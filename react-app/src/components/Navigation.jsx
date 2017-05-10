@@ -9,7 +9,34 @@ import {
     Button
 } from 'react-bootstrap/lib/';
 
+
 class Navigation extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleInputKey = this.handleInputKey.bind(this);
+        this.search = this.search.bind(this);
+
+        this.state = {
+            searchInput: ""
+        };
+    }
+
+    handleInputChange(e) {
+        this.setState({ searchInput: e.target.value });
+    }
+
+    handleInputKey(e) {
+        if (e.key === "Enter") this.search();
+    }
+
+    search(e) {
+        let input = this.state.searchInput;
+        this.setState({ searchInput: "" });
+        this.props.history.push("/", input);
+    }
+
     render() {
         return (
             <Navbar>
@@ -22,10 +49,10 @@ class Navigation extends Component {
                     <NavItem onClick={e => this.props.history.push("/offer")} >Vlastite ponude</NavItem>
                     <Navbar.Form pullLeft>
                         <FormGroup>
-                            <FormControl type="text" placeholder="Pretraži ponude"/>
+                            <FormControl type="text" placeholder="Pretraži ponude" value={this.state.searchInput} onChange={this.handleInputChange} onKeyPress={this.handleInputKey} />
                         </FormGroup>
                         {' '}
-                        <Button type="submit">Traži</Button>
+                        <Button type="submit" onClick={this.search} >Traži</Button>
                     </Navbar.Form>
                 </Nav>
                 <Nav pullRight>
