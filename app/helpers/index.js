@@ -37,16 +37,21 @@ findOneUser = profileID => {
 let createNewUser;
 createNewUser = function(profile) {
     return new Promise((resolve, reject) => {
+        console.log("usli smo");
         let newUser = new db.userModel({
             profileId: profile.id,
             fullName: profile.displayName,
-            profilePic: profile.photos[0].value || ''
+            profilePic: profile.photos[0].value || '',
+            rating: 0,
+            NumOfBooks : 0,
+            NumOfRentBooks : 0
         });
         newUser.save(function (error) {
             if(error) {
                 reject(error);
             }
             else{
+                console.log("usli smo");
                 resolve(newUser);
             }
         });

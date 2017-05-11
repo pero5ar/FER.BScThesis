@@ -7,16 +7,23 @@ module.exports = () => {
     let routes = {
         'get': {
             '/': (req, res, next) => {
+                res.render('login')
+            },
+
+            '/home': (req, res, next) => {
                 res.render('index')
             },
-            '/home': (req, res, next) => {
-                res.send('Welcome')
+
+            'localhost:3000/profile': (req , res, next) => {
+                
             },
             '/auth/facebook': passport.authenticate('facebook'),
             '/auth/facebook/callback': passport.authenticate('facebook', {
                 successRedirect: '/home',
                 failureRedirect: '/'
             }),
+
+
         },
 
         'post': {
