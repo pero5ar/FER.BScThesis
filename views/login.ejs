@@ -19,10 +19,10 @@
                 <div class="login" id="card">
                     <div class="front signin_form">
                         <p>Login Your Account</p>
-                        <form class="login-form">
+                        <form class="login-form" method="post" action="/login">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Type your email">
+                                    <input type="name" name="name" class="form-control" placeholder="Type your name here">
                                     <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-user"></i>
                                       </span>
@@ -30,7 +30,15 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="Type your password">
+                                    <input type="email" name='email' class="form-control" placeholder="Type your email">
+                                    <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-user"></i>
+                                      </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="password" name="password" class="form-control" placeholder="Type your password">
                                     <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-lock"></i>
                                       </span>
@@ -41,7 +49,7 @@
                             </div>
 
                             <div class="form-group sign-btn">
-                                <input type="submit" class="btn" value="Log in">
+                                <input type="submit" class="btn" value="Log">
                                 <p><a href="#" class="forgot">Can't access your account?</a></p>
                                 <p><strong>New to MultimediaLibrary?</strong><br><a href="#" id="flip-btn" class="signup signup_link">Sign up for a new account</a></p>
                             </div>

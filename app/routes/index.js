@@ -2,21 +2,19 @@
 const h=require('../helpers');
 const passport = require('passport');
 const config = require('../config');
+const controllers = require('../controllers/authentication');
 
 module.exports = () => {
     let routes = {
         'get': {
             '/': (req, res, next) => {
-                res.render('login')
+               res.render('login');
             },
 
-            '/home': (req, res, next) => {
-                res.render('index')
+            '/home': (req, res, next) => { //neka bude i u reactu pocetna home
+                res.render('index');
             },
 
-            'localhost:3000/profile': (req , res, next) => {
-                
-            },
             '/auth/facebook': passport.authenticate('facebook'),
             '/auth/facebook/callback': passport.authenticate('facebook', {
                 successRedirect: '/home',
@@ -27,6 +25,10 @@ module.exports = () => {
         },
 
         'post': {
+            '/register': controllers.register,
+            '/login':    controllers.login
+
+
 
         },
         'NA': {

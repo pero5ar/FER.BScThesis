@@ -58,6 +58,7 @@ createNewUser = function(profile) {
     });
 };
 
+
 let findById = function (id) {
     return new Promise((resolve, reject) => {
         db.userModel.findById(id, (error, user) => {
