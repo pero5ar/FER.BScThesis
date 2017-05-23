@@ -9,12 +9,7 @@ import {
     Col
 } from 'react-bootstrap/lib';
 
-function FieldGroup({
-    id,
-    label,
-    help,
-    ...props
-}) {
+function FieldGroup({id, label, help, ...props}) {
     return (
         <FormGroup controlId={id}>
             <ControlLabel>{label}</ControlLabel>

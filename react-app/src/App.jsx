@@ -16,14 +16,12 @@ class App extends Component {
         super(props)
 
         this.state = {
-            isLoggedIn: false
+            isLoggedIn: false   // TODO: maintain this across tabs
         };
-        this.handleLogIn = this
-            .handleLogIn
-            .bind(this);
+        this.handleLogIn = this.handleLogIn.bind(this);
     }
 
-    handleLogIn() {
+    handleLogIn() {     // TODO: fetch data
         this.setState({
             isLoggedIn: !this.state.isLoggedIn
         });
@@ -41,27 +39,10 @@ class App extends Component {
                         <Route path="/home" component={Main}/>
                         <Route path="/login" component={LogInWithState}/>
                         <Route path="/item/:id" component={ItemDetails}/>
-                        <Route
-                            path="/offer"
-                            render={() => this.state.isLoggedIn
-                            ? <OfferContainer/>
-                            : <Redirect to="/login"/>}/>
-                        <Route
-                            path="/notifications"
-                            render={() => this.state.isLoggedIn
-                            ? <NotificationContainer/>
-                            : <Redirect to="/login"/>}/>
-                        <Route
-                            exact
-                            path="/profile"
-                            render={() => this.state.isLoggedIn
-                            ? <ProfileContainer/>
-                            : <Redirect to="/login"/>}/> {/*TODO: wrap this with redirect to login user profile*/}
-                        <Route
-                            path="/profile/:id"
-                            render={() => this.state.isLoggedIn
-                            ? <ProfileContainer/>
-                            : <Redirect to="/login"/>}/>
+                        <Route path="/offer" render={() => this.state.isLoggedIn ? <OfferContainer/> : <Redirect to="/login"/>}/>
+                        <Route path="/notifications" render={() => this.state.isLoggedIn ? <NotificationContainer/> : <Redirect to="/login"/>}/>
+                        <Route exact path="/profile" render={() => this.state.isLoggedIn ? <ProfileContainer/> : <Redirect to="/login"/>}/> {/*TODO: wrap this with redirect to login user profile*/}
+                        <Route path="/profile/:id" render={() => this.state.isLoggedIn ? <ProfileContainer/> : <Redirect to="/login"/>}/>
                     </Grid>
                 </div>
             </Router>
