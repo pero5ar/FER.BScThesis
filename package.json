@@ -17,13 +17,18 @@
   },
   "homepage": "https://github.com/erikm0111/photoshare-app#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "connect-mongo": "1.1.0",
+    "cookie-parser": "^1.4.3",
     "ejs": "2.3.4",
     "express": "^4.13.3",
     "express-session": "1.12.1",
+    "jsonwebtoken": "^7.4.0",
     "mongoose": "4.3.1",
-    "passport": "0.3.2",
+    "passport": "^0.3.2",
     "passport-facebook": "2.0.0",
-    "socket.io": "^1.7.3"
+    "passport-local": "^1.0.0",
+    "socket.io": "^1.7.3",
+    "uglify-js": "^3.0.5"
   }
 }
