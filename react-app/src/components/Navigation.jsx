@@ -42,7 +42,7 @@ class Navigation extends Component {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <NavLink to="/">Prometej</NavLink>
+                        <NavLink to="/home">Prometej</NavLink>
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
