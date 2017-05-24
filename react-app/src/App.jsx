@@ -7,9 +7,7 @@ import ItemDetails from './components/item/ItemDetails';
 import OfferContainer from './components/offer/OfferContainer';
 import NotificationContainer from './components/notification/NotificationContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
-import {BrowserRouter as Router, Route, Redirect, withRouter} from 'react-router-dom';
-
-const NavigationWithRouter = withRouter(Navigation);
+import {BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 class App extends Component {
     constructor(props) {
@@ -33,7 +31,7 @@ class App extends Component {
         return (
             <Router>
                 <div>
-                    <NavigationWithRouter/>
+                    <Navigation/>
                     <Grid>
                         <Route exact path="/" component={Main}/>
                         <Route path="/home" component={Main}/>

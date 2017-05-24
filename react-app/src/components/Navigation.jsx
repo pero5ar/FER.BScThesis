@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import {
     Nav,
     Navbar,
@@ -65,4 +65,4 @@ class Navigation extends Component {
     }
 }
 
-export default Navigation;
+export default withRouter(Navigation);
