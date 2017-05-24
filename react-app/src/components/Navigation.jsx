@@ -77,6 +77,7 @@ class Navigation extends Component {
                     </Nav>
                     <Nav pullRight>
                         <NavItem eventKey={1} onClick={e => this.props.history.push("/login")}>Ulogiraj se</NavItem>
+                        <NavItem eventKey={1} onClick={e => this.props.history.push("/register")}>Napravi račun</NavItem>
                     </Nav>
                 </Navbar>
             );

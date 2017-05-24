@@ -7,8 +7,8 @@ import {
     Button,
     Col
 } from 'react-bootstrap/lib';
-import { withRouter } from 'react-router-dom';
-import Auth from '../modules/Auth';
+import { withRouter, Link } from 'react-router-dom';
+import Auth from '../../modules/Auth';
 
 function FieldGroup({id, label, help, ...props}) {
     return (
@@ -27,7 +27,7 @@ class Login extends Component {
     }
 
     logIn() {
-        if (!Auth.isUserAuthenticated()) {
+        if (!Auth.isUserAuthenticated()) {      // TODO: fetch
             Auth.authenticateUser("nekitoken");
         }
         this.props.history.push("/home");
@@ -37,22 +37,17 @@ class Login extends Component {
         const FormInstance = () => (
             <form>
                 <FieldGroup
-                    id="formControlsText"
-                    type="text"
-                    label="User name"
-                    placeholder="Enter username"/>
-                <FieldGroup
                     id="formControlsEmail"
                     type="email"
-                    label="Email address"
-                    placeholder="Enter email"/>
+                    label="E-mail adresa"
+                    placeholder="Unesi e-mail adresu"/>
                 <FieldGroup
                     id="formControlsPassword"
-                    label="Password"
                     type="password"
-                    placeholder="Enter password"/>
+                    label="Šifra"
+                    placeholder="Unesi šifru"/>
                 <Button type="submit" onClick={this.logIn}>
-                    Submit
+                    Prijava
                 </Button>
             </form>
         );
@@ -62,6 +57,8 @@ class Login extends Component {
                 <h1>Ulogiraj se</h1>
                 <br />
                 <FormInstance/>
+                <br />
+                <Link to="/register">Nemaš račun?</Link>
             </Col>
         );
     }

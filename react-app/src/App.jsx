@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {Grid} from 'react-bootstrap/lib';
 import Navigation from './components/Navigation';
 import Main from './components/Main';
-import Login from './components/Login'
+import Login from './components/auth/Login'
+import Registration from './components/auth/Registration';
 import ItemDetails from './components/item/ItemDetails';
 import OfferContainer from './components/offer/OfferContainer';
 import NotificationContainer from './components/notification/NotificationContainer';
@@ -24,6 +25,7 @@ class App extends Component {
                         <Route exact path="/" component={Main}/>
                         <Route path="/home" component={Main}/>
                         <Route path="/login" component={Login}/>
+                        <Route path="/register" component={Registration}/>
                         <Route path="/item/:id" component={ItemDetails}/>
                         <Route path="/offer" render={() => Auth.isUserAuthenticated() ? <OfferContainer/> : <Redirect to="/login"/>}/>
                         <Route path="/notifications" render={() => Auth.isUserAuthenticated() ? <NotificationContainer/> : <Redirect to="/login"/>}/>
