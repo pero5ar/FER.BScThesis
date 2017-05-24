@@ -8,6 +8,7 @@ import {
     FormControl,
     Button
 } from 'react-bootstrap/lib/';
+import Auth from '../modules/Auth';
 
 
 class Navigation extends Component {
@@ -17,6 +18,7 @@ class Navigation extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleInputKey = this.handleInputKey.bind(this);
         this.search = this.search.bind(this);
+        this.logOut = this.logOut.bind(this);
 
         this.state = {
             searchInput: ""
@@ -34,31 +36,65 @@ class Navigation extends Component {
     search(e) {
         let input = this.state.searchInput;
         this.setState({ searchInput: "" });
-        this.props.history.push("/", input);
+        this.props.history.push("/home", input);
+    }
+
+    logOut(e) {
+        Auth.deauthenticateUser();
+        this.props.history.push("/home");
     }
 
     render() {
+        const Header = () => (
+            <Navbar.Header>
+                <Navbar.Brand>
+                    <NavLink to="/home">Prometej</NavLink>
+                </Navbar.Brand>
+            </Navbar.Header>
+        ); 
+
+        const SearchForm = () => (
+            <Navbar.Form pullLeft>
+                <FormGroup>
+                    <FormControl
+                        type="text"
+                        placeholder="Pretraži ponude"
+                        value={this.state.searchInput}
+                        onChange={this.handleInputChange}
+                        onKeyPress={this.handleInputKey}/>
+                </FormGroup>
+                {' '}
+                <Button type="submit" onClick={this.search}>Traži</Button>
+            </Navbar.Form>
+        );
+
+        if (!Auth.isUserAuthenticated()) {
+            return (
+                <Navbar>
+                    <Header />
+                    <Nav>
+                        <SearchForm />
+                    </Nav>
+                    <Nav pullRight>
+                        <NavItem eventKey={1} onClick={e => this.props.history.push("/login")}>Ulogiraj se</NavItem>
+                    </Nav>
+                </Navbar>
+            );
+        }
+
         return (
             <Navbar>
                 <Navbar.Header>
-                    <Navbar.Brand>
-                        <NavLink to="/home">Prometej</NavLink>
-                    </Navbar.Brand>
+                    <Header />
                 </Navbar.Header>
                 <Nav>
-                    <NavItem onClick={e => this.props.history.push("/offer")} >Vlastite ponude</NavItem>
-                    <Navbar.Form pullLeft>
-                        <FormGroup>
-                            <FormControl type="text" placeholder="Pretraži ponude" value={this.state.searchInput} onChange={this.handleInputChange} onKeyPress={this.handleInputKey} />
-                        </FormGroup>
-                        {' '}
-                        <Button type="submit" onClick={this.search} >Traži</Button>
-                    </Navbar.Form>
+                    <NavItem onClick={e => this.props.history.push("/offer")}>Vlastite ponude</NavItem>
+                    <SearchForm />
                 </Nav>
                 <Nav pullRight>
-                    <NavItem eventKey={1} onClick={e => this.props.history.push("/notifications")}  >Obavijesti</NavItem>
-                    <NavItem eventKey={2} onClick={e => this.props.history.push("/profile")} >Profil</NavItem>
-                    <NavItem eventKey={3} href="#">Odjava</NavItem>
+                    <NavItem eventKey={1} onClick={e => this.props.history.push("/notifications")}>Obavijesti</NavItem>
+                    <NavItem eventKey={2} onClick={e => this.props.history.push("/profile")}>Profil</NavItem>
+                    <NavItem eventKey={3} onClick={this.logOut}>Odjava</NavItem>
                 </Nav>
             </Navbar>
         );

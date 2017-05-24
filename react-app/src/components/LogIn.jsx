@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import {
     FormGroup,
     ControlLabel,
@@ -8,6 +7,8 @@ import {
     Button,
     Col
 } from 'react-bootstrap/lib';
+import { withRouter } from 'react-router-dom';
+import Auth from '../modules/Auth';
 
 function FieldGroup({id, label, help, ...props}) {
     return (
@@ -18,9 +19,18 @@ function FieldGroup({id, label, help, ...props}) {
     );
 }
 
-class LogIn extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
+
+        this.logIn = this.logIn.bind(this);
+    }
+
+    logIn() {
+        if (!Auth.isUserAuthenticated()) {
+            Auth.authenticateUser("nekitoken");
+        }
+        this.props.history.push("/home");
     }
 
     render() {
@@ -41,7 +51,7 @@ class LogIn extends Component {
                     label="Password"
                     type="password"
                     placeholder="Enter password"/>
-                <Button type="submit" onClick={this.props.handleLogIn}>
+                <Button type="submit" onClick={this.logIn}>
                     Submit
                 </Button>
             </form>
@@ -57,4 +67,4 @@ class LogIn extends Component {
     }
 }
 
-export default LogIn;
+export default withRouter(Login);
