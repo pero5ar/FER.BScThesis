@@ -8,7 +8,7 @@ import ItemDetails from './components/item/ItemDetails';
 import OfferContainer from './components/offer/OfferContainer';
 import NotificationContainer from './components/notification/NotificationContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
-import {BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import Auth from './modules/Auth';
 
 class App extends Component {

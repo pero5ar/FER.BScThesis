@@ -45,7 +45,7 @@ class Navigation extends Component {
     }
 
     render() {
-        const Header = () => (
+        const NavigationHeader = () => (
             <Navbar.Header>
                 <Navbar.Brand>
                     <NavLink to="/home">Prometej</NavLink>
@@ -71,7 +71,7 @@ class Navigation extends Component {
         if (!Auth.isUserAuthenticated()) {
             return (
                 <Navbar>
-                    <Header />
+                    <NavigationHeader />
                     <Nav>
                         <SearchForm />
                     </Nav>
@@ -85,9 +85,7 @@ class Navigation extends Component {
 
         return (
             <Navbar>
-                <Navbar.Header>
-                    <Header />
-                </Navbar.Header>
+                <NavigationHeader />
                 <Nav>
                     <NavItem onClick={e => this.props.history.push("/offer")}>Vlastite ponude</NavItem>
                     <SearchForm />
