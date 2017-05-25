@@ -1,31 +1,7 @@
 'use strict';
 
-
-const router = require('express').Router();
 const db = require('../db');
 const crypto = require('crypto');
-
-
-
-let _registerRoutes = (routes, method) => {
-    for (let key in routes) {
-        if (typeof routes[key] === 'object' && routes[key] !== null && !(routes[key] instanceof Array)) {  //mora biti objekt ali ne null ni array
-            _registerRoutes(routes[key], key)    //invoke funkcije kojoj u prvom argumentu predajemo route a u drugom metodu(get, post, NA u ovom slucaju)
-        } else {
-            //Register the routes
-            if (method === 'get') {
-                router.get(key, routes[key]);
-            } else if (method === 'post') {
-                router.post(key, routes[key]);
-            }
-        }
-    }
-};
-
-let route = function (routes) {
-    _registerRoutes(routes);
-    return router;
-};
 
 let findOneUser;
 findOneUser = profileID => {
@@ -88,7 +64,6 @@ let randomHex = () =>{
 
 
 module.exports = {
-    route,
     isUserAuthenticated,
     randomHex,
     findOneUser,
