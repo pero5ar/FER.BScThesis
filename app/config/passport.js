@@ -6,7 +6,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
-var User = mongoose.model('user');
+var User = mongoose.model('User');
 
 passportExports = passport.use(new LocalStrategy({
         usernameField: 'email'
@@ -31,4 +31,4 @@ passportExports = passport.use(new LocalStrategy({
 
 module.exports = {
     passportExports
-}
+};

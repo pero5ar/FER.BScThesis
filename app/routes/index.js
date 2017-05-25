@@ -1,9 +1,18 @@
 'use strict'
-const h=require('../helpers');
-const passport = require('passport');
-const config = require('../config');
-const controllers = require('../controllers/authentication');
+var express = require('express');
+var router = express.Router();
+var controllerUsers = require('../controllers/authentication');
 
+router.post('/register', controllerUsers.register);
+router.post('/login', controllerUsers.login);
+router.get('/users', controllerUsers.getUsers);
+//router.get('/users/:id', controllerUsers.getUser);
+
+
+
+module.exports = router
+
+/*
 module.exports = () => {
     let routes = {
         'get': {
@@ -37,3 +46,4 @@ module.exports = () => {
     };
     return h.route(routes);
 };
+*/

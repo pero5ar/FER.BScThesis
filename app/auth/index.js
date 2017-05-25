@@ -1,4 +1,4 @@
-const passport = require('passport');
+/*const passport = require('passport');
 const config = require('../config');
 const h = require('../helpers');
 const FacebookStrategy = require('passport-facebook').Strategy;
@@ -38,3 +38,4 @@ module.exports = () => {
     passport.use(new FacebookStrategy(config.fb, authProcessor));
 
 };
+*/

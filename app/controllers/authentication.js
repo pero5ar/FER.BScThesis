@@ -2,10 +2,11 @@
  * Created by JEROEN on 5/15/2017.
  */
 
-var passport = require('passport');
 var mongoose = require('mongoose');
-var User = mongoose.model('user');
-const bodyParser = require('body-parser');
+var User = mongoose.model('User');
+var passport = require('passport');
+
+
 var sendJSONresponse = function(res, status, content) {
     res.status(status);
     res.json(content);
@@ -23,11 +24,13 @@ module.exports.register = function(req, res) {
     var user = new User();
     user.name = req.body.name;
     user.email = req.body.email;
+    console.log(req.body.passw)
     user.password = req.body.password;
-    user.rating = 0;
     user.profilePic = "";
-    user.numOfItems = 0;
-    user.numOfRentItems  = 0;
+    user.description = "";
+    user.rating = 0;
+    user.ownedItems = [];
+    user.rentedItems = [];
     user.save(function(err) {
         var token;
         if (err) {
@@ -43,7 +46,6 @@ module.exports.register = function(req, res) {
 };
 
 module.exports.login = function(req, res) {
-    console.log(req.body.name);
     if(!req.body.email || !req.body.password) {
         sendJSONresponse(res, 400, {
             "message": "All fields required"
@@ -59,6 +61,7 @@ module.exports.login = function(req, res) {
         if(user){
             token = user.generateJwt();
             sendJSONresponse(res, 200, {
+                user : user,
                 "token" : token
             });
             
@@ -68,3 +71,17 @@ module.exports.login = function(req, res) {
         }
     })(req, res);
 };
+
+module.exports.getUsers = function(req, res) {
+    User.find({}, function (err, user) {
+        if(err){
+            sendJSONresponse(res, 404, err);
+        } else {
+            sendJSONresponse(res, 404, user);
+        }
+    })
+};
+module.exports.getUser = function(req, res) {
+    console.log(req.params._id);
+};
+

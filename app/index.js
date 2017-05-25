@@ -1,7 +1,7 @@
 'use strict';
 
 //Social Authentication Logic
-require('./auth')();
+//require('./auth')();
 
 //Create IO Server instance
 let ioServer = (app) => {
@@ -15,7 +15,7 @@ let ioServer = (app) => {
 };
 
 module.exports = {
-    router: require('./routes')(), //moramo je i pokrenut da instancira route
+    //router: require('./routes'), //moramo je i pokrenut da instancira route
     session: require('./session'),
     ioServer
 };
