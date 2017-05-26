@@ -4,7 +4,7 @@ import Navigation from './components/Navigation';
 import Main from './components/Main';
 import Login from './components/auth/Login'
 import Registration from './components/auth/Registration';
-import ItemDetails from './components/item/ItemDetails';
+import ItemDetailsContainer from './components/item/ItemDetailsContainer';
 import OfferContainer from './components/offer/OfferContainer';
 import NotificationContainer from './components/notification/NotificationContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
@@ -26,7 +26,7 @@ class App extends Component {
                         <Route path="/home" component={Main}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/register" component={Registration}/>
-                        <Route path="/item/:id" component={ItemDetails}/>
+                        <Route path="/item/:id" component={ItemDetailsContainer}/>
                         <Route path="/offer" render={() => Auth.isUserAuthenticated() ? <OfferContainer/> : <Redirect to="/login"/>}/>
                         <Route path="/notifications" render={() => Auth.isUserAuthenticated() ? <NotificationContainer/> : <Redirect to="/login"/>}/>
                         <Route exact path="/profile" render={() => Auth.isUserAuthenticated() ? <ProfileContainer/> : <Redirect to="/login"/>}/> {/*TODO: wrap this with redirect to login user profile*/}

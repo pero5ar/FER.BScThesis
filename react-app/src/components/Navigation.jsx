@@ -14,7 +14,8 @@ import Auth from '../modules/Auth';
 class Navigation extends Component {
     constructor(props) {
         super(props);
-
+        
+        this.handleLink = this.handleLink.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleInputKey = this.handleInputKey.bind(this);
         this.search = this.search.bind(this);
@@ -25,12 +26,19 @@ class Navigation extends Component {
         };
     }
 
+    handleLink(path, e) {
+        this.setState({ searchInput: "" });
+        this.props.history.push(path);
+    }
+
     handleInputChange(e) {
         this.setState({ searchInput: e.target.value });
     }
 
     handleInputKey(e) {
-        if (e.key === "Enter") this.search();
+        if (e.key === "Enter") { 
+            this.search();
+        }
     }
 
     search(e) {
@@ -41,7 +49,7 @@ class Navigation extends Component {
 
     logOut(e) {
         Auth.deauthenticateUser();
-        this.props.history.push("/home");
+        this.handleLink("/home", e);
     }
 
     render() {
@@ -53,12 +61,14 @@ class Navigation extends Component {
             </Navbar.Header>
         ); 
 
-        const SearchForm = () => (
+        /* LOSES FOCUS ON INPUT
+        const SearchForm = (props) => (
             <Navbar.Form pullLeft>
                 <FormGroup>
                     <FormControl
                         type="text"
                         placeholder="Pretraži ponude"
+                        inputRef={props.searchInputRef}
                         value={this.state.searchInput}
                         onChange={this.handleInputChange}
                         onKeyPress={this.handleInputKey}/>
@@ -67,17 +77,29 @@ class Navigation extends Component {
                 <Button type="submit" onClick={this.search}>Traži</Button>
             </Navbar.Form>
         );
+        */
 
         if (!Auth.isUserAuthenticated()) {
             return (
                 <Navbar>
                     <NavigationHeader />
                     <Nav>
-                        <SearchForm />
+                        <Navbar.Form pullLeft>
+                            <FormGroup>
+                                <FormControl
+                                    type="text"
+                                    placeholder="Pretraži ponude"
+                                    value={this.state.searchInput}
+                                    onChange={this.handleInputChange}
+                                    onKeyPress={this.handleInputKey}/>
+                            </FormGroup>
+                            {' '}
+                            <Button type="submit" onClick={this.search}>Traži</Button>
+                        </Navbar.Form>
                     </Nav>
                     <Nav pullRight>
-                        <NavItem eventKey={1} onClick={e => this.props.history.push("/login")}>Ulogiraj se</NavItem>
-                        <NavItem eventKey={1} onClick={e => this.props.history.push("/register")}>Napravi račun</NavItem>
+                        <NavItem eventKey={1} onClick={e => this.handleLink("/login", e)}>Ulogiraj se</NavItem>
+                        <NavItem eventKey={2} onClick={e => this.handleLink("/register", e)}>Napravi račun</NavItem>
                     </Nav>
                 </Navbar>
             );
@@ -87,12 +109,23 @@ class Navigation extends Component {
             <Navbar>
                 <NavigationHeader />
                 <Nav>
-                    <NavItem onClick={e => this.props.history.push("/offer")}>Vlastite ponude</NavItem>
-                    <SearchForm />
+                    <NavItem onClick={e => this.handleLink("/offer", e)}>Vlastite ponude</NavItem>
+                    <Navbar.Form pullLeft>
+                        <FormGroup>
+                            <FormControl
+                                type="text"
+                                placeholder="Pretraži ponude"
+                                value={this.state.searchInput}
+                                onChange={this.handleInputChange}
+                                onKeyPress={this.handleInputKey}/>
+                        </FormGroup>
+                        {' '}
+                        <Button type="submit" onClick={this.search}>Traži</Button>
+                    </Navbar.Form>
                 </Nav>
                 <Nav pullRight>
-                    <NavItem eventKey={1} onClick={e => this.props.history.push("/notifications")}>Obavijesti</NavItem>
-                    <NavItem eventKey={2} onClick={e => this.props.history.push("/profile")}>Profil</NavItem>
+                    <NavItem eventKey={1} onClick={e => this.handleLink("/notifications", e)}>Obavijesti</NavItem>
+                    <NavItem eventKey={2} onClick={e => this.handleLink("/profile", e)}>Profil</NavItem>
                     <NavItem eventKey={3} onClick={this.logOut}>Odjava</NavItem>
                 </Nav>
             </Navbar>
