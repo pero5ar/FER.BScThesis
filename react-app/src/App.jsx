@@ -14,9 +14,22 @@ import Auth from './modules/Auth';
 class App extends Component {
     constructor(props) {
         super(props)
+
+        this.handleLogInUpdate = this.handleLogInUpdate.bind(this)
+    }
+
+    handleLogInUpdate() {
+        this.forceUpdate();
+        if (Auth.isUserAuthenticated()) {
+            console.log("znam");
+        }
     }
 
     render() {
+        const tmp = () => (
+            <h1>Stisni F5</h1>
+        );
+
         return (
             <Router>
                 <div>
@@ -24,13 +37,14 @@ class App extends Component {
                     <Grid>
                         <Route exact path="/" component={Main}/>
                         <Route path="/home" component={Main}/>
-                        <Route path="/login" component={Login}/>
-                        <Route path="/register" component={Registration}/>
+                        <Route path="/login" render={() => Auth.isUserAuthenticated() ? <Redirect to="/home"/> : <Login handleUpdate={this.handleLogInUpdate}/>}/>
+                        <Route path="/register" render={() => Auth.isUserAuthenticated() ? <Redirect to="/home"/> : <Registration/>}/>
                         <Route path="/item/:id" component={ItemDetailsContainer}/>
                         <Route path="/offer" render={() => Auth.isUserAuthenticated() ? <OfferContainer/> : <Redirect to="/login"/>}/>
                         <Route path="/notifications" render={() => Auth.isUserAuthenticated() ? <NotificationContainer/> : <Redirect to="/login"/>}/>
-                        <Route exact path="/profile" render={() => Auth.isUserAuthenticated() ? <ProfileContainer/> : <Redirect to="/login"/>}/> {/*TODO: wrap this with redirect to login user profile*/}
+                        <Route exact path="/profile" render={() => Auth.isUserAuthenticated() ? <Redirect to={"/profile/" + Auth.getId()}/> : <Redirect to="/login"/>}/>
                         <Route path="/profile/:id" render={() => Auth.isUserAuthenticated() ? <ProfileContainer/> : <Redirect to="/login"/>}/>
+                        <Route path="/redirect" component={tmp}/>
                     </Grid>
                 </div>
             </Router>

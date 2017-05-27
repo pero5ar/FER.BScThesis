@@ -10,11 +10,11 @@ import {
 import { withRouter, Link } from 'react-router-dom';
 import Auth from '../../modules/Auth';
 
-function FieldGroup({id, label, help, ...props}) {
+function FieldGroup({id, inputId, label, help, ...props}) {
     return (
-        <FormGroup controlId={id}>
+        <FormGroup>
             <ControlLabel>{label}</ControlLabel>
-            <FormControl {...props}/> {help && <HelpBlock>{help}</HelpBlock>}
+            <FormControl id={inputId} {...props}/> {help && <HelpBlock>{help}</HelpBlock>}
         </FormGroup>
     );
 }
@@ -23,14 +23,47 @@ class Login extends Component {
     constructor(props) {
         super(props);
 
+        this.handleEmailInputChange = this.handleEmailInputChange.bind(this);
+        this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
         this.logIn = this.logIn.bind(this);
+
+        this.emailInputId = "emailInput";
+        this.passwordInputId = "passwordInput";
+
+        this.state = {
+            email: "",
+            password: ""
+        };
+    }
+
+    handleEmailInputChange(e) {
+        this.setState({ email: e.target.value }, () => document.getElementById(this.emailInputId).focus() );
+    }
+
+    handlePasswordInputChange(e) {
+        this.setState({ password: e.target.value }, () => document.getElementById(this.passwordInputId).focus() );
     }
 
     logIn() {
-        if (!Auth.isUserAuthenticated()) {      // TODO: fetch
-            Auth.authenticateUser("nekitoken");
-        }
-        this.props.history.push("/home");
+        if (!Auth.isUserAuthenticated()) {
+            let data = {
+                email: this.state.email,
+                password: this.state.password
+            }
+            fetch("/api/login", {
+                method: "POST",
+                body: JSON.stringify(data),
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(response => response.json())
+                .then(res => {
+                    Auth.authenticateUser(res.token, res.user._id);
+                })
+                .catch(err => console.log(err));
+        } 
+        this.props.history.push("/redirect");
     }
 
     render() {
@@ -38,14 +71,20 @@ class Login extends Component {
             <form>
                 <FieldGroup
                     id="formControlsEmail"
+                    inputId={this.emailInputId}
                     type="email"
                     label="E-mail adresa"
-                    placeholder="Unesi e-mail adresu"/>
+                    placeholder="Unesi e-mail adresu"
+                    value={this.state.email}
+                    onChange={this.handleEmailInputChange}/>
                 <FieldGroup
                     id="formControlsPassword"
+                    inputId={this.passwordInputId}
                     type="password"
                     label="Šifra"
-                    placeholder="Unesi šifru"/>
+                    placeholder="Unesi šifru"
+                    value={this.state.password}
+                    onChange={this.handlePasswordInputChange}/>
                 <Button type="submit" onClick={this.logIn}>
                     Prijava
                 </Button>

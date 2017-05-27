@@ -32,7 +32,7 @@ class ItemDetailsContainer extends Component {
         });
         this.setState({
             name: "Item " + this.id,
-            image: "https://techpur.com/wp-content/plugins/facebook-share-like-popup-viralplus/default.jpg",
+            image: "http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png",
             description: "Lorem ipsum dolor sit amet, ne brute ocurreret vim, vim labores consulatu splendide ea. Melius nostrum ex pro, invenire percipitur ei sit. Melius timeam epicurei duo at, cibo veritus perpetua ad usu, cum eros probo tincidunt te. Alia dicit laboramus an pri, atqui vulputate nam et. Ridens laoreet interesset id has, te pro bonorum detracto. Et vim dictas latine.",
             type: "",
             userOwnerId: 1,
