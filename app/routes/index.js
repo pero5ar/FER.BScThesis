@@ -2,15 +2,18 @@
 var express = require('express');
 var router = express.Router();
 var controllerUsers = require('../controllers/authentication');
+var controllerItems = require('../controllers/controllerItems');
 
 router.post('/register', controllerUsers.register);
 router.post('/login', controllerUsers.login);
 router.get('/users', controllerUsers.getUsers);
-//router.get('/users/:id', controllerUsers.getUser);
+router.get('/users/:name', controllerUsers.getUser);
+router.post('/item', controllerItems.insertItem);
+router.get('/items', controllerItems.getItems);
 
 
 
-module.exports = router
+module.exports = router;
 
 /*
 module.exports = () => {

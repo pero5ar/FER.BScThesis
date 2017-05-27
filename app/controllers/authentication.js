@@ -82,6 +82,12 @@ module.exports.getUsers = function(req, res) {
     })
 };
 module.exports.getUser = function(req, res) {
-    console.log(req.params._id);
+    User.find({name : req.params.name}, function (err, user) {
+        if(err){
+            sendJSONresponse(res, 404, err);
+        } else {
+            sendJSONresponse(res, 404, user);
+        }
+    })
 };
 
