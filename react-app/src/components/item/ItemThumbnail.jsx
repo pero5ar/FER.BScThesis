@@ -5,7 +5,7 @@ import {Col, Thumbnail} from 'react-bootstrap/lib';
 class ItemThumbnail extends Component {
     render() {
         return (
-            <Col sm={6} md={3}>
+            <Col sm={this.props.size.sm} md={this.props.size.md}>
                 <Link to={"/item/" + this.props.id}>
                     <Thumbnail src={this.props.image}>
                         <h3>{this.props.title}</h3>

@@ -15,6 +15,11 @@ require('./app/config/passport');
 
 var routesApi = require('./app/routes/index')
 
+app.use(function(req,res,next){
+    res.setHeader('Access-Control-Allow-Origin', 'localhost');
+	next();
+});
+
 
 app.use(bodyParser.json({extend : false}));
 app.use(bodyParser.urlencoded({extend : false}));
