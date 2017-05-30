@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 require('./users');
 require('./items');
+//var dbURI = 'mongodb://testUserLocal:testUser@localhost:3000/zavrsni';
 var dbURI = 'mongodb://root:root@ds137530.mlab.com:37530/multimedialibrary';
 //if (process.env.NODE_ENV === 'production'){
     //dbURI = 'mongodb://hgss:hgss123@127.0.0.1:27017/hgss';

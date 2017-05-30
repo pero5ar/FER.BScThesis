@@ -24,7 +24,7 @@ module.exports.register = function(req, res) {
     var user = new User();
     user.name = req.body.name;
     user.email = req.body.email;
-    console.log(req.body.passw)
+
     user.password = req.body.password;
     user.profilePic = "";
     user.description = "";
@@ -82,11 +82,11 @@ module.exports.getUsers = function(req, res) {
     })
 };
 module.exports.getUser = function(req, res) {
-    User.find({name : req.params.name}, function (err, user) {
+    User.findById(req.params.id, function (err, user) {
         if(err){
             sendJSONresponse(res, 404, err);
         } else {
-            sendJSONresponse(res, 404, user);
+            sendJSONresponse(res, 200, user);
         }
     })
 };

@@ -13,10 +13,10 @@ var sendJSONresponse = function(res, status, content) {
 module.exports.insertItem = function (req, res) {
     Item.create({
         name : req.body.name,
-        image : "",
+        image : req.body.image,
         description : req.body.description,
         type : req.body.type,
-        userOwnerId : "",
+        userOwnerId : req.body.user,
         userHolderId : ""
     }, function (err, item) {
         if(err){
@@ -34,7 +34,18 @@ module.exports.getItems = function (req, res) {
         if(err){
             sendJSONresponse(res, 404, err);
         } else {
-            sendJSONresponse(res, 404, item);
+            sendJSONresponse(res, 200, item);
         }
     })
+};
+
+module.exports.getItem = function (req, res) {
+    Item.findById(req.params.id, function (err, item) {
+        if(err){
+            sendJSONresponse(res, 404, err);
+        } else {
+            sendJSONresponse(res, 200, item);
+        }
+    })
+
 };
