@@ -8,15 +8,15 @@ class ItemThumbnailContainer extends Component {
             sm: 6,
             md: 3
         }
-
+        
         let itemThumbnails = this.props.items.map((item, index) => (
-            <ItemThumbnail size={size} key={item._id} id={item._id} image={item.image} title={item.name} description={item.description} />
+            <ItemThumbnail size={size} key={item._id} index={index} id={item._id} image={item.image} title={item.name} description={item.description} />
         ));
 
         let resultRender = []
-        for (let i = 0; i < itemThumbnails.lenght; i++) {
+        for (let i = 0; i < itemThumbnails.length; i++) {
             resultRender.push(itemThumbnails[i]);
-            if ((i+1) % 4) {
+            if ((i+1) % 4 === 0) {
                 resultRender.push(<Clearfix visible-xs-block></Clearfix>);
             }
         }

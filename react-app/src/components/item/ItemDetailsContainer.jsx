@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Row} from 'react-bootstrap/lib';
 import ImageColumn from '../shared/ImageColumn';
 import TextColumn from '../shared/TextColumn';
+import Loading from 'react-loading';
 
 function fetchName() {return "Ime"}
 
@@ -30,18 +31,38 @@ class ItemDetailsContainer extends Component {
             isError: false,
             isLoading: true
         });
-        this.setState({
-            name: "Item " + this.id,
-            image: "http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png",
-            description: "Lorem ipsum dolor sit amet, ne brute ocurreret vim, vim labores consulatu splendide ea. Melius nostrum ex pro, invenire percipitur ei sit. Melius timeam epicurei duo at, cibo veritus perpetua ad usu, cum eros probo tincidunt te. Alia dicit laboramus an pri, atqui vulputate nam et. Ridens laoreet interesset id has, te pro bonorum detracto. Et vim dictas latine.",
-            type: "",
-            userOwnerId: 1,
-            userOwnerName: fetchName(),
-            userHolderId: 2,
-            statusText: (1===2) ? "zauzeto" : "slobodno",
-            statusColor: (1===2) ? "danger" : "success",
-            isLoading: false
-        })
+        let _this = this;
+        fetch(`/api/items/${this.id}`).then(response => response.json())
+            .then(item => {
+                let avalible = item.userOwnerId !== item.userHolderId;
+                _this.setState({
+                    name: item.name,
+                    image: item.image,
+                    description: item.description,
+                    type: item.type,
+                    userOwnerId: item.userOwnerId,
+                    userHolderId: item.userHolderId,
+                    statusText: avalible ? "slobodno" : "zauzeto",
+                    statusColor: avalible ? "success" : "danger"
+                });
+                return item.userOwnerId;
+            }).then(userOwnerId => {
+                fetch(`/api/users/${userOwnerId}`).then(response => response.json())
+                .then(user => {
+                    _this.setState({
+                        userOwnerName: user.name
+                    });
+                })
+            }).then(() => {
+                _this.setState({
+                    isLoading: false
+                });
+            }).catch(err => {
+                _this.setState({
+                    isError: true,
+                    isLoading: false
+                })
+            });
     }
 
     render() {
@@ -55,7 +76,9 @@ class ItemDetailsContainer extends Component {
         }
 
         return (
-            <Row> 
+            <Row>
+                { this.state.isError && <div style={ { color: "red" } }>Error :(</div> }
+                { this.state.isLoading && <Loading type='balls' color='#000000' /> }
                 <TextColumn
                     size={textWidth}
                     text={{

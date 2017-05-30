@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ItemThumbnailContainer from './item/ItemThumbnailContainer';
+import Loading from 'react-loading';
 
 class Main extends Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class Main extends Component {
         this.state = {
             items: [],
             isLoading: false,
-            iserror: false,
+            isError: false,
             filterText: this.props.location.state || ""
         }
     }
@@ -32,12 +33,12 @@ class Main extends Component {
                     isLoading: false,
                     isError: true
                 })
-            })
+            });
     }
 
     getFilteredItems() {
         let filter = this.state.filterText.toLowerCase();
-        return this.state.items.filter(item => item.title && item.title.toLowerCase().startsWith(filter));
+        return this.state.items.filter(item => item.name && item.name.toLowerCase().startsWith(filter));
     }
 
 
@@ -46,6 +47,7 @@ class Main extends Component {
             <div>
                 { this.props.location.state }
                 { this.state.isError && <div style={ { color: "red" } }>Error :(</div> }
+                { this.state.isLoading && <Loading type='balls' color='#000000' /> }
                 <ItemThumbnailContainer items={ this.getFilteredItems() } />
             </div>
         );
