@@ -46,6 +46,7 @@ class Login extends Component {
 
     logIn() {
         if (!Auth.isUserAuthenticated()) {
+            let _this = this;
             let data = {
                 email: this.state.email,
                 password: this.state.password
@@ -61,9 +62,10 @@ class Login extends Component {
                 .then(res => {
                     Auth.authenticateUser(res.token, res.user._id);
                 })
+                .then( () => _this.props.history.push("/profile") )
                 .catch(err => console.log(err));
         } 
-        this.props.history.push("/redirect");
+        this.props.history.push("/profile");
     }
 
     render() {
