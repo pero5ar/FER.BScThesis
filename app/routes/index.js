@@ -7,9 +7,10 @@ var controllerItems = require('../controllers/controllerItems');
 router.post('/register', controllerUsers.register);
 router.post('/login', controllerUsers.login);
 router.get('/users', controllerUsers.getUsers);
-router.get('/users/:name', controllerUsers.getUser);
+router.get('/users/:id', controllerUsers.getUser);
 router.post('/item', controllerItems.insertItem);
 router.get('/items', controllerItems.getItems);
+router.get('/items/:id', controllerItems.getItem);
 
 
 
