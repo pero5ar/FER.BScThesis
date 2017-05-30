@@ -11,7 +11,7 @@ class Main extends Component {
             isLoading: false,
             isError: false,
             filterText: this.props.location.state || ""
-        }
+        };
     }
 
     componentDidMount() {

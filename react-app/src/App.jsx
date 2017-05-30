@@ -12,18 +12,6 @@ import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import Auth from './modules/Auth';
 
 class App extends Component {
-    constructor(props) {
-        super(props)
-
-        this.handleLogInUpdate = this.handleLogInUpdate.bind(this)
-    }
-
-    handleLogInUpdate() {
-        this.forceUpdate();
-        if (Auth.isUserAuthenticated()) {
-            console.log("znam");
-        }
-    }
 
     render() {
         return (
@@ -33,7 +21,7 @@ class App extends Component {
                     <Grid>
                         <Route exact path="/" component={Main}/>
                         <Route path="/home" component={Main}/>
-                        <Route path="/login" render={() => Auth.isUserAuthenticated() ? <Redirect to="/home"/> : <Login handleUpdate={this.handleLogInUpdate}/>}/>
+                        <Route path="/login" render={() => Auth.isUserAuthenticated() ? <Redirect to="/home"/> : <Login/>}/>
                         <Route path="/register" render={() => Auth.isUserAuthenticated() ? <Redirect to="/home"/> : <Registration/>}/>
                         <Route path="/item/:id" component={ItemDetailsContainer}/>
                         <Route path="/offer" render={() => Auth.isUserAuthenticated() ? <OfferContainer/> : <Redirect to="/login"/>}/>

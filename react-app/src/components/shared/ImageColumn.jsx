@@ -6,7 +6,7 @@ class ImageColumn extends Component {
         return (
             <Col sm={this.props.size.sm} md={this.props.size.md}>
                 <Image src={this.props.image} responsive/> 
-                <h4><Label bsStyle={this.props.status}>{this.props.info}</Label></h4>
+                {this.props.status && <h4><Label bsStyle={this.props.status}>{this.props.info}</Label></h4>}
             </Col>
         );
     }

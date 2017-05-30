@@ -4,8 +4,6 @@ import ImageColumn from '../shared/ImageColumn';
 import TextColumn from '../shared/TextColumn';
 import Loading from 'react-loading';
 
-function fetchName() {return "Ime"}
-
 class ItemDetailsContainer extends Component {
     constructor(props) {
         super(props)
@@ -23,7 +21,7 @@ class ItemDetailsContainer extends Component {
             userHolderId: "",
             statusText: "",
             statusColor: "",
-        }
+        };
     }
 
     componentDidMount() {
