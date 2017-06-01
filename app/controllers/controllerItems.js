@@ -49,3 +49,26 @@ module.exports.getItem = function (req, res) {
     })
 
 };
+
+module.exports.updateItem = function (req, res) {
+        Item.findById(req.params.id, function (err, item) {
+            if(item){
+                item.name = req.body.name ? req.body.name : item.name;
+                item.image = req.body.image ? req.body.image : item.image;
+                item.description = req.body.description ? req.body.description : item.description;
+                item.type = req.body.type ? req.body.type : item.type;
+                item.save(function(err, item) {
+                    if(err) {
+                        sendJSONresponse(res, 404, err);
+                    }
+                    else {
+                        sendJSONresponse(res, 200, item);
+                    }
+                })
+            }
+            else if(err){
+                sendJSONresponse(res, 404, err);
+            }
+        })
+};
+
