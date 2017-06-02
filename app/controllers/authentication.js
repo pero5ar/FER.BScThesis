@@ -91,3 +91,26 @@ module.exports.getUser = function(req, res) {
     })
 };
 
+module.exports.updateUser = function (req, res) {
+    User.findById(req.params.id, function (err, user) {
+        if(user){
+            user.name = req.body.name ? req.body.name : user.name;
+            user.email = req.body.email ? req.body.email : user.email;
+            user.profilePic = req.body.profilePic ? req.body.profilePic : user.profilePic;
+            user.description = req.body.description ? req.body.description : user.description;
+            user.save(function(err, user) {
+                if(err) {
+                    sendJSONresponse(res, 404, err);
+                }
+                else {
+                    sendJSONresponse(res, 200, user);
+                }
+            })
+        }
+        else if(err){
+            sendJSONresponse(res, 404, err);
+        }
+    })
+};
+
+

@@ -11,6 +11,8 @@ router.get('/users/:id', controllerUsers.getUser);
 router.post('/item', controllerItems.insertItem);
 router.get('/items', controllerItems.getItems);
 router.get('/items/:id', controllerItems.getItem);
+router.post('/item/:id', controllerItems.updateItem);
+router.post('/user/:id',controllerUsers.updateUser);
 
 
 
