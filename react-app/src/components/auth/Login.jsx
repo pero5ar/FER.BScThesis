@@ -63,14 +63,16 @@ class Login extends Component {
                     Auth.authenticateUser(res.token, res.user._id);
                 })
                 .then( () => _this.props.history.push("/profile") )
-                .catch(err => console.log(err));
-        } 
-        this.props.history.push("/profile");
+                .catch(err => {
+                    console.log(err);
+                    // TODO: report error
+                });
+        }
     }
 
     render() {
         const FormInstance = () => (
-            <form>
+            <form onSubmit={this.logIn}>
                 <FieldGroup
                     id="formControlsEmail"
                     inputId={this.emailInputId}
@@ -87,9 +89,10 @@ class Login extends Component {
                     placeholder="Unesi šifru"
                     value={this.state.password}
                     onChange={this.handlePasswordInputChange}/>
-                <Button type="submit" onClick={this.logIn}>
+                <Button type="submit">
                     Prijava
                 </Button>
+                { }
             </form>
         );
 

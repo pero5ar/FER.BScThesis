@@ -6,3 +6,10 @@ a:hover {
 .thumbnail:hover {
     background-color: #e7e7e7;
 }
+
+.centerSVG {
+    padding: 30% 30% 30% 30%;
+    text-align: center;
+    color: red;
+    font-size: 2em;
+}

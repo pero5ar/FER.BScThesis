@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import {Row} from 'react-bootstrap/lib';
 import ImageColumn from '../shared/ImageColumn';
 import TextColumn from '../shared/TextColumn';
-import Loading from 'react-loading';
+import LoadingStatus from '../shared/LoadingStatus';
 
 class ProfileContainer extends Component {
     constructor(props) {
@@ -66,8 +66,7 @@ class ProfileContainer extends Component {
 
         return (
             <Row>
-                { this.state.isError && <div style={ { color: "red" } }>Error :(</div> }
-                { this.state.isLoading && <Loading type='balls' color='#000000' /> }
+                <LoadingStatus isError={this.state.isError} isLoading={this.state.isLoading} />
                 <ImageColumn 
                     size={imageWidth}
                     image={this.state.image}

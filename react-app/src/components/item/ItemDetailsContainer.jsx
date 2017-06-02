@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Row} from 'react-bootstrap/lib';
 import ImageColumn from '../shared/ImageColumn';
 import TextColumn from '../shared/TextColumn';
-import Loading from 'react-loading';
+import LoadingStatus from '../shared/LoadingStatus';
 
 class ItemDetailsContainer extends Component {
     constructor(props) {
@@ -45,6 +45,12 @@ class ItemDetailsContainer extends Component {
                 });
                 return item.userOwnerId;
             }).then(userOwnerId => {
+                if (!userOwnerId) {
+                    _this.setState({
+                        userOwnerName: "unknown"
+                    });
+                    return;
+                } 
                 fetch(`/api/users/${userOwnerId}`).then(response => response.json())
                 .then(user => {
                     _this.setState({
@@ -75,8 +81,7 @@ class ItemDetailsContainer extends Component {
 
         return (
             <Row>
-                { this.state.isError && <div style={ { color: "red" } }>Error :(</div> }
-                { this.state.isLoading && <Loading type='balls' color='#000000' /> }
+                <LoadingStatus isError={this.state.isError} isLoading={this.state.isLoading} />
                 <TextColumn
                     size={textWidth}
                     text={{
