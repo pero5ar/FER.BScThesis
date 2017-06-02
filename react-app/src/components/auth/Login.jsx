@@ -44,7 +44,8 @@ class Login extends Component {
         this.setState({ password: e.target.value }, () => document.getElementById(this.passwordInputId).focus() );
     }
 
-    logIn() {
+    logIn(e) {
+        e.preventDefault();
         if (!Auth.isUserAuthenticated()) {
             let _this = this;
             let data = {
@@ -52,13 +53,14 @@ class Login extends Component {
                 password: this.state.password
             }
             fetch("/api/login", {
-                method: "POST",
-                body: JSON.stringify(data),
-                credentials: 'include',
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }).then(response => response.json())
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    credentials: 'include',
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(response => response.json())
                 .then(res => {
                     Auth.authenticateUser(res.token, res.user._id);
                 })

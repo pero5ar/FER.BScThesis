@@ -44,7 +44,11 @@ class Navigation extends Component {
     search(e) {
         let input = this.state.searchInput;
         this.setState({ searchInput: "" });
-        this.props.history.push("/home", input);
+        this.props.history.push({
+            pathname: "/home",
+            search: input
+        });
+        window.location.reload();
     }
 
     logOut(e) {
@@ -56,28 +60,10 @@ class Navigation extends Component {
         const NavigationHeader = () => (
             <Navbar.Header>
                 <Navbar.Brand>
-                    <NavLink to="/home">Prometej</NavLink>
+                    <NavLink to="/home" onClick={e => {if (this.props.location.pathname === "/home") window.location.reload()} }>Prometej</NavLink>
                 </Navbar.Brand>
             </Navbar.Header>
-        ); 
-
-        /* LOSES FOCUS ON INPUT
-        const SearchForm = (props) => (
-            <Navbar.Form pullLeft>
-                <FormGroup>
-                    <FormControl
-                        type="text"
-                        placeholder="Pretraži ponude"
-                        inputRef={props.searchInputRef}
-                        value={this.state.searchInput}
-                        onChange={this.handleInputChange}
-                        onKeyPress={this.handleInputKey}/>
-                </FormGroup>
-                {' '}
-                <Button type="submit" onClick={this.search}>Traži</Button>
-            </Navbar.Form>
         );
-        */
 
         if (!Auth.isUserAuthenticated()) {
             return (

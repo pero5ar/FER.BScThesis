@@ -26,15 +26,14 @@ class NewOfferForm extends Component {
         this.handleImageInputChange = this.handleImageInputChange.bind(this);
         this.handleDescriptionInputChange = this.handleDescriptionInputChange.bind(this);
         this.handleTypeInputChange = this.handleTypeInputChange.bind(this);
+        this.sendOffer = this.sendOffer.bind(this);
 
-        let userId = Auth.getId();
         this.state = {
             name: "",
             image: "",
             description: "",
             type: "",
-            userOwnerId: userId,
-            userHolderId: userId
+            user: Auth.getId()
         };
     }
 
@@ -54,13 +53,33 @@ class NewOfferForm extends Component {
         this.setState({ type: e.target.value });
     }
 
+    sendOffer(e) {
+        e.preventDefault();
+        let _this = this;
+        let data = this.state;
+        fetch("/api/item", {
+                method: "POST",
+                body: JSON.stringify(data),
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then( () => _this.props.history.push("/home") )
+            .catch(err => {
+                console.log(err);
+                // TODO: report error
+            });
+    }
+
     render() {
         let selectOptions = ITEM_TYPES.map(str => (
             <option value={str}>{str}</option>
         ));
 
         return (
-            <form>
+            <form onSubmit={this.sendOffer}>
                 <FieldGroup
                     id="formControlsName"
                     type="text"

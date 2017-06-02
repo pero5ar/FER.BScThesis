@@ -24,7 +24,7 @@ class App extends Component {
                         <Route path="/login" render={() => Auth.isUserAuthenticated() ? <Redirect to="/home"/> : <Login/>}/>
                         <Route path="/register" render={() => Auth.isUserAuthenticated() ? <Redirect to="/home"/> : <Registration/>}/>
                         <Route path="/item/:id" component={ItemDetailsContainer}/>
-                        <Route path="/offer" render={() => true ? <OfferContainer/> : <Redirect to="/login"/>}/>
+                        <Route path="/offer" render={() => Auth.isUserAuthenticated() ? <OfferContainer/> : <Redirect to="/login"/>}/>
                         <Route path="/notifications" render={() => Auth.isUserAuthenticated() ? <NotificationContainer/> : <Redirect to="/login"/>}/>
                         <Route exact path="/profile" render={() => Auth.isUserAuthenticated() ? <Redirect to={"/profile/" + Auth.getId()}/> : <Redirect to="/login"/>}/>
                         <Route path="/profile/:id" render={() => Auth.isUserAuthenticated() ? <ProfileContainer/> : <Redirect to="/login"/>}/>

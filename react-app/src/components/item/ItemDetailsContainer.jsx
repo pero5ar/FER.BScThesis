@@ -30,9 +30,10 @@ class ItemDetailsContainer extends Component {
             isLoading: true
         });
         let _this = this;
-        fetch(`/api/items/${this.id}`).then(response => response.json())
+        fetch(`/api/items/${this.id}`)
+            .then(response => response.json())
             .then(item => {
-                let avalible = item.userOwnerId !== item.userHolderId;
+                let avalible = !item.userHolderId || item.userOwnerId === item.userHolderId;
                 _this.setState({
                     name: item.name,
                     image: item.image,
@@ -44,28 +45,32 @@ class ItemDetailsContainer extends Component {
                     statusColor: avalible ? "success" : "danger"
                 });
                 return item.userOwnerId;
-            }).then(userOwnerId => {
+            })
+            .then(userOwnerId => {
                 if (!userOwnerId) {
                     _this.setState({
                         userOwnerName: "unknown"
                     });
                     return;
-                } 
-                fetch(`/api/users/${userOwnerId}`).then(response => response.json())
-                .then(user => {
-                    _this.setState({
-                        userOwnerName: user.name
-                    });
-                })
-            }).then(() => {
+                }
+                fetch(`/api/users/${userOwnerId}`)
+                    .then(response => response.json())
+                    .then(user => {
+                        _this.setState({
+                            userOwnerName: user.name
+                        });
+                    })
+            })
+            .then(() => {
                 _this.setState({
                     isLoading: false
                 });
-            }).catch(err => {
+            })
+            .catch(err => {
                 _this.setState({
                     isError: true,
                     isLoading: false
-                })
+                });
             });
     }
 

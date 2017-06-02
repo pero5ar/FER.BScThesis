@@ -51,7 +51,8 @@ class Registration extends Component {
         this.setState({ password: e.target.value }, () => document.getElementById(this.passwordInputId).focus() );
     }
 
-    register() {
+    register(e) {
+        e.preventDefault();
         if (!Auth.isUserAuthenticated()) {
             let _this = this;
             let data = {
@@ -60,25 +61,28 @@ class Registration extends Component {
                 password: this.state.password
             }
             fetch("/api/register", {
-                method: "POST",
-                body: JSON.stringify(data),
-                credentials: 'include',
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }).then(response => response.json())
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    credentials: 'include',
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(response => response.json())
                 .then(res => {
                     Auth.authenticateUser(res.token, res.user._id);
                 })
                 .then( () => _this.props.history.push("/profile") )
-                .catch(err => console.log(err));
+                .catch(err => {
+                    console.log(err);
+                    // TODO: report error
+                });
         }
-        this.props.history.push("/profile");
     }
 
     render() {
         const FormInstance = () => (
-            <form>
+            <form onSubmit={this.register}>
                 <FieldGroup
                     id="formControlsText"
                     inputId={this.usernameInputId}
@@ -103,7 +107,7 @@ class Registration extends Component {
                     placeholder="Unesi šifru"
                     value={this.state.password}
                     onChange={this.handlePasswordInputChange}/>
-                <Button type="submit" onClick={this.register}>
+                <Button type="submit">
                     Prijava
                 </Button>
             </form>

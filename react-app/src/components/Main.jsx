@@ -10,7 +10,7 @@ class Main extends Component {
             items: [],
             isLoading: false,
             isError: false,
-            filterText: this.props.location.state || ""
+            filterText: this.props.location.search ? this.props.location.search.substr(1) : ""
         };
     }
 
@@ -20,19 +20,20 @@ class Main extends Component {
             isLoading: true
         });
         let _this = this;
-        fetch("/api/items").then(response => response.json())
+        fetch("/api/items")
+            .then(response => response.json())
             .then(items => {
                 _this.setState( {
                     items: items,
                     isLoading: false
-                })
+                });
             })
             .catch(err => {
                 _this.setState( {
                     items: [],
                     isLoading: false,
                     isError: true
-                })
+                });
             });
     }
 
@@ -44,7 +45,7 @@ class Main extends Component {
     render() {
         return (
             <div>
-                { this.props.location.state }
+                { this.state.filterText }
                 <LoadingStatus isError={this.state.isError} isLoading={this.state.isLoading} />
                 <ItemThumbnailContainer items={ this.getFilteredItems() } />
             </div>
