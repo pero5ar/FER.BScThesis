@@ -1,5 +1,5 @@
 {
-  "name": "photoshare-app",
+  "name": "Multimedia Library",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,15 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/erikm0111/photoshare-app.git"
+    "type": "git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/erikm0111/photoshare-app/issues"
-  },
-  "homepage": "https://github.com/erikm0111/photoshare-app#readme",
+
   "dependencies": {
     "body-parser": "^1.17.1",
     "connect-mongo": "1.1.0",

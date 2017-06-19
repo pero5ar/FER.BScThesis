@@ -72,3 +72,33 @@ module.exports.updateItem = function (req, res) {
         })
 };
 
+module.exports.userOwnerItems = function (req, res) {
+    Item.find({userOwnerId : req.params.id}, function (err, user) {
+        if(err) {
+            sendJSONresponse(res, 404, err);
+        } else {
+            sendJSONresponse(res, 200, user);
+        }
+    })
+};
+
+module.exports.userHolderItems = function (req, res) {
+    Item.find({userHolderId : req.params.id}, function (err, user) {
+        if(err) {
+            sendJSONresponse(res, 404, err);
+        } else {
+            sendJSONresponse(res, 200, user);
+        }
+    })
+};
+
+module.exports.deleteItem = function (req, res) {
+  Item.findById(req.params.id, function (err, item) {
+      if(err) {
+          sendJSONresponse(res, 404, err);
+      } else {
+          item.remove();
+          sendJSONresponse(res, 200, item);
+      }
+  })
+};
