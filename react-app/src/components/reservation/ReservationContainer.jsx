@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class NotificationContainer extends Component {
+class ReservationContainer extends Component {
     render() {
         return (
             <div>
@@ -10,4 +10,4 @@ class NotificationContainer extends Component {
     }
 }
 
-export default NotificationContainer;
+export default ReservationContainer;

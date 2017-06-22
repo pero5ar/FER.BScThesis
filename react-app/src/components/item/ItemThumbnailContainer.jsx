@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
-import {Row, Clearfix} from 'react-bootstrap/lib';
+import React, { Component } from 'react';
+import { Row, Clearfix } from 'react-bootstrap/lib';
+import no_image_avalible from '../../images/no_image_available.png';
 import ItemThumbnail from './ItemThumbnail';
 
 class ItemThumbnailContainer extends Component {
@@ -10,7 +11,15 @@ class ItemThumbnailContainer extends Component {
         }
         
         let itemThumbnails = this.props.items.map((item, index) => (
-            <ItemThumbnail size={size} key={item._id} index={index} id={item._id} image={item.image} title={item.name} description={item.description} />
+            <ItemThumbnail
+                size={size}
+                key={item._id}
+                index={index}
+                id={item._id}
+                image={item.image || no_image_avalible}
+                title={item.name}
+                description={item.description}
+                />
         ));
 
         let resultRender = []

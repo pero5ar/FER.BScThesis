@@ -25,7 +25,7 @@ class ProfileContainer extends Component {
         };
     }
 
-     componentDidMount() {
+    componentDidMount() {
         this.setState({
             isError: false,
             isLoading: true
@@ -52,7 +52,7 @@ class ProfileContainer extends Component {
                     isLoading: false
                 })
             });
-     }
+    }
 
     render() {
         const textWidth = {

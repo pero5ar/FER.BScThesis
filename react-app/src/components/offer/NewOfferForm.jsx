@@ -6,6 +6,7 @@ import {
     HelpBlock,
     Button
 } from 'react-bootstrap/lib';
+import { withRouter } from 'react-router-dom';
 import Auth from '../../modules/Auth';
 import { ITEM_TYPES } from '../../modules/Constants';
 
@@ -66,7 +67,7 @@ class NewOfferForm extends Component {
                 }
             })
             .then(response => response.json())
-            .then( () => _this.props.history.push("/home") )
+            .then( () => window.location.reload() )
             .catch(err => {
                 console.log(err);
                 // TODO: report error
@@ -86,7 +87,8 @@ class NewOfferForm extends Component {
                     label="Naziv"
                     placeholder="Upiši naziv ponude"
                     value={this.state.name}
-                    onChange={this.handleNameInputChange} />
+                    onChange={this.handleNameInputChange}
+                    required />
                 <FieldGroup
                     id="formControlsURL"
                     type="url"
@@ -112,8 +114,12 @@ class NewOfferForm extends Component {
                         value={this.state.description}
                         onChange={this.handleDescriptionInputChange} />
                 </FormGroup>
-                <Button type="submit">
+                <Button type="submit" bsStyle="primary">
                     Stvori ponudu
+                </Button>
+                &nbsp;
+                <Button bsStyle="danger" onClick={this.props.handleFormCollapse} >
+                    Otkaži
                 </Button>
                 { }
             </form>
@@ -121,4 +127,4 @@ class NewOfferForm extends Component {
     }
 }
 
-export default NewOfferForm;
+export default withRouter(NewOfferForm);
