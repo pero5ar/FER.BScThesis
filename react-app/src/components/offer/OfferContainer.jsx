@@ -29,7 +29,7 @@ const DeleteButton = ({id, holder}) => (
                 e.preventDefault();
                 handleDeleteItem(id);
             }}>
-            Obriši {console.log("str" + holder)}
+            Obriši
         </Button>
     );
 
