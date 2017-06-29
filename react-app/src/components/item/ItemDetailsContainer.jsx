@@ -35,6 +35,7 @@ class ItemDetailsContainer extends Component {
         });
         let _this = this;
         let data = {
+            itemId: this.id,
             userOwnerId: this.state.userOwnerId,  // prima request
             userHolderId: Auth.getId(),  // radi request
             date : new Date()
@@ -89,7 +90,7 @@ class ItemDetailsContainer extends Component {
                             .then(response => response.json())
                             .then(claims => {
                                 let reservable = true;
-                                for (let claim in claims) {
+                                for (let claim of claims) {
                                     if (userId === claim.userHolderId) {
                                         reservable = false;
                                         break;

@@ -20,7 +20,17 @@ function handleDeleteItem(id) {
 };
 
 function handleReturnItem(id) {
-    console.log(id);
+    fetch(`/api/itemReturn/${id}`, {
+            method: "POST",
+            credentials: 'include'
+        })
+        .then(response => response.json())
+        .then(res => {
+            window.location.reload();
+        })
+        .catch(err => {
+            console.log(err);
+        });
 }
 
 const DeleteButton = ({id, holder}) => (

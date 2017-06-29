@@ -33,7 +33,7 @@ class NewOfferForm extends Component {
             name: "",
             image: "",
             description: "",
-            type: "",
+            type: ITEM_TYPES[0],
             user: Auth.getId()
         };
     }
