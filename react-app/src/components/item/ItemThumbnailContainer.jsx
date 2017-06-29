@@ -26,7 +26,7 @@ class ItemThumbnailContainer extends Component {
         for (let i = 0; i < itemThumbnails.length; i++) {
             resultRender.push(itemThumbnails[i]);
             if ((i+1) % 4 === 0) {
-                resultRender.push(<Clearfix visible-xs-block></Clearfix>);
+                resultRender.push(<Clearfix key={i*100} visible-xs-block></Clearfix>);
             }
         }
 

@@ -60,6 +60,9 @@ class OfferContainer extends Component {
         this.handleFormCollapse = this.handleFormCollapse.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
 
+        this.OWNED_SELECT_KEY = 10;
+        this.HELD_SELECT_KEY = 11;
+
         this.state = {
             openForm: false,
             isLoadingOwned: false,
@@ -67,7 +70,7 @@ class OfferContainer extends Component {
             isError: false,
             ownedItems: [],
             heldItems: [],
-            ownedSelected: true
+            selectedKey: 0
         }
     }
 
@@ -75,8 +78,8 @@ class OfferContainer extends Component {
         this.setState({ openForm: !this.state.openForm });
     }
 
-    handleSelect() {
-        this.setState({ ownedSelected: !this.state.ownedSelected });
+    handleSelect(key) {
+        this.setState({ selectedKey: key });
     }
 
     componentDidMount() {
@@ -134,9 +137,9 @@ class OfferContainer extends Component {
             );
 
         const SelectedItemList = () => {
-            let description = this.state.ownedSelected ? "Sav vlastiti ponuđen sadržaj" : "Sav posuđen sadržaj";
-            let items = this.state.ownedSelected ? this.state.ownedItems : this.state.heldItems;
-            let buttons = this.state.ownedSelected ? [ReturnButton, DeleteButton] : [];
+            let description = this.state.selectedKey === this.OWNED_SELECT_KEY ? "Sav vlastiti ponuđen sadržaj" : "Sav posuđen sadržaj";
+            let items = this.state.selectedKey === this.OWNED_SELECT_KEY ? this.state.ownedItems : this.state.heldItems;
+            let buttons = this.state.selectedKey === this.OWNED_SELECT_KEY ? [ReturnButton, DeleteButton] : [];
             return <ItemList title={description} items={items} buttons={buttons} />;
         };
 
@@ -144,8 +147,8 @@ class OfferContainer extends Component {
             <div>
                 <Row>
                     <Nav bsStyle="tabs" justified onSelect={this.handleSelect}>
-                        <NavItem eventKey={10}>Ponuđeno</NavItem>
-                        <NavItem eventKey={11}>Posuđeno</NavItem>
+                        <NavItem eventKey={this.OWNED_SELECT_KEY}>Ponuđeno</NavItem>
+                        <NavItem eventKey={this.HELD_SELECT_KEY}>Posuđeno</NavItem>
                     </Nav>
                     <SelectedItemList />
                 </Row>
