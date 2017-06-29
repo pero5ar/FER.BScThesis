@@ -21,6 +21,7 @@ router.post('/item/:id', controllerItems.updateItem);
 router.delete('/item/:id', controllerItems.deleteItem);
 router.get('/userOwnerItems/:id', controllerItems.userOwnerItems);
 router.get('/userHolderItems/:id', controllerItems.userHolderItems);
+router.get('/categoryItems/:name', controllerItems.categoryItems);
 //user requests to items
 router.post('/userRequest', controllerRequest.userRequest);
 router.get('/userRequestOwner/:id', controllerRequest.userRequestOwner);
