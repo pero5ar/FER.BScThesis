@@ -32,7 +32,7 @@ app.use(multimedia_lib.session);
 app.use(passport.initialize());
 app.use(passport.session()); //connecting serialize and deserialize methods
 
-app.use('/api', routesApi)
+app.use('/api', routesApi);
 
 multimedia_lib.ioServer(app).listen(app.get('port'), () =>{
     console.log('Multimedia_lib is running on port: ', app.get('port'));

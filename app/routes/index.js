@@ -30,6 +30,9 @@ router.delete('/cancelRequest/:id', controllerRequest.cancelRequest);
 router.post('/acceptRequest/:id', controllerRequest.acceptRequest);
 router.get('/itemRequests/:id', controllerRequest.getAllRequestsForItem);
 router.get('/itemUserHolder/:id', controllerRequest.getUsersRequest);
+router.post('/itemReturn/:id', controllerRequest.itemReturn);
+router.get('/getUserClaimsDetails/:id', controllerRequest.getAllUserClaimsDetails);
+router.get('/userClaimsOwnerDetails/:id', controllerRequest.userClaimsOwnerDetails);
 
 module.exports = router;
 
