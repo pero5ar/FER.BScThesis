@@ -102,3 +102,13 @@ module.exports.deleteItem = function (req, res) {
       }
   })
 };
+
+module.exports.categoryItems = function (req, res) {
+    Item.find({type : req.params.name}, function (err, item) {
+        if(err) {
+            sendJSONresponse(res, 404, err);
+        } else {
+            sendJSONresponse(res, 200, item);
+        }
+    })
+};

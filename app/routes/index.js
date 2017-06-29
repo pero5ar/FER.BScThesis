@@ -21,6 +21,7 @@ router.post('/item/:id', controllerItems.updateItem);
 router.delete('/item/:id', controllerItems.deleteItem);
 router.get('/userOwnerItems/:id', controllerItems.userOwnerItems);
 router.get('/userHolderItems/:id', controllerItems.userHolderItems);
+router.get('/categoryItems/:name', controllerItems.categoryItems);
 //user requests to items
 router.post('/userRequest', controllerRequest.userRequest);
 router.get('/userRequestOwner/:id', controllerRequest.userRequestOwner);
@@ -30,6 +31,9 @@ router.delete('/cancelRequest/:id', controllerRequest.cancelRequest);
 router.post('/acceptRequest/:id', controllerRequest.acceptRequest);
 router.get('/itemRequests/:id', controllerRequest.getAllRequestsForItem);
 router.get('/itemUserHolder/:id', controllerRequest.getUsersRequest);
+router.post('/itemReturn/:id', controllerRequest.itemReturn);
+router.get('/getUserClaimsDetails/:id', controllerRequest.getAllUserClaimsDetails);
+router.get('/userClaimsOwnerDetails/:id', controllerRequest.userClaimsOwnerDetails);
 
 module.exports = router;
 
