@@ -43,7 +43,7 @@ const DeleteButton = ({id, holder}) => (
         </Button>
     );
 
-const ReturnButton = ({id, holder}) => /* !(holder && holder !== Auth.getId()) ? null : */ (
+const ReturnButton = ({id, holder}) => !(holder && holder !== Auth.getId()) ? null : (
         <Button bsSize="xsmall" bsStyle={"warning"}
             onClick={e => {
                 e.preventDefault();
@@ -53,15 +53,15 @@ const ReturnButton = ({id, holder}) => /* !(holder && holder !== Auth.getId()) ?
         </Button>
     );
 
+const OWNED_SELECT_KEY = 10;
+const HELD_SELECT_KEY = 11;
+
 class OfferContainer extends Component {
     constructor(props) {
         super(props)
 
         this.handleFormCollapse = this.handleFormCollapse.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
-
-        this.OWNED_SELECT_KEY = 10;
-        this.HELD_SELECT_KEY = 11;
 
         this.state = {
             openForm: false,
@@ -137,9 +137,9 @@ class OfferContainer extends Component {
             );
 
         const SelectedItemList = () => {
-            let description = this.state.selectedKey === this.OWNED_SELECT_KEY ? "Sav vlastiti ponuđen sadržaj" : "Sav posuđen sadržaj";
-            let items = this.state.selectedKey === this.OWNED_SELECT_KEY ? this.state.ownedItems : this.state.heldItems;
-            let buttons = this.state.selectedKey === this.OWNED_SELECT_KEY ? [ReturnButton, DeleteButton] : [];
+            let description = this.state.selectedKey === OWNED_SELECT_KEY ? "Sav vlastiti ponuđen sadržaj" : "Sav sadržaj posuđen od drugih korisnika";
+            let items = this.state.selectedKey === OWNED_SELECT_KEY ? this.state.ownedItems : this.state.heldItems;
+            let buttons = this.state.selectedKey === OWNED_SELECT_KEY ? [ReturnButton, DeleteButton] : [];
             return <ItemList title={description} items={items} buttons={buttons} />;
         };
 
@@ -147,8 +147,8 @@ class OfferContainer extends Component {
             <div>
                 <Row>
                     <Nav bsStyle="tabs" justified onSelect={this.handleSelect}>
-                        <NavItem eventKey={this.OWNED_SELECT_KEY}>Ponuđeno</NavItem>
-                        <NavItem eventKey={this.HELD_SELECT_KEY}>Posuđeno</NavItem>
+                        <NavItem eventKey={OWNED_SELECT_KEY}>Ponuđeno</NavItem>
+                        <NavItem eventKey={HELD_SELECT_KEY}>Posuđeno</NavItem>
                     </Nav>
                     <SelectedItemList />
                 </Row>

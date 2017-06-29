@@ -85,6 +85,8 @@ module.exports.acceptRequest = function (req, res) {
                     item.save(function(err) {
                         if(err) {
                             sendJSONresponse(res, 404, err);
+                        } else {
+                            sendJSONresponse(res, 200, claim);
                         }
                     })
                 }
@@ -157,6 +159,10 @@ module.exports.getAllUserClaimsDetails = function (req, res) {
     let k=0;
     Claim.find({userHolderId : req.params.id}).then(
         function (claim) {
+            if(claim.length === 0) {
+                sendJSONresponse(res, 204, []);
+                return;
+            }
             for(let c of claim){
                 Item.findById(c.itemId).then(
                     function (item) {
@@ -186,6 +192,10 @@ module.exports.userClaimsOwnerDetails = function (req, res) {
     let k=0;
     Claim.find({userOwnerId : req.params.id}).then(
         function (claim) {
+            if(claim.length === 0) {
+                sendJSONresponse(res, 204, []);
+                return;
+            }
             for(let c of claim){
                 Item.findById(c.itemId).then(
                     function (item) {
