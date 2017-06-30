@@ -85,6 +85,8 @@ module.exports.acceptRequest = function (req, res) {
                     item.save(function(err) {
                         if(err) {
                             sendJSONresponse(res, 404, err);
+                        } else {
+                            sendJSONresponse(res, 200, claim);
                         }
                     })
                 }
@@ -157,8 +159,12 @@ module.exports.getAllUserClaimsDetails = function (req, res) {
     let k=0;
     Claim.find({userHolderId : req.params.id}).then(
         function (claim) {
-            for(i of claim){
-                Item.findById(i.itemId).then(
+            if(claim.length === 0) {
+                sendJSONresponse(res, 204, []);
+                return;
+            }
+            for(let c of claim){
+                Item.findById(c.itemId).then(
                     function (item) {
                         User.findById(item.userOwnerId).then(
                             function (user) {
@@ -167,7 +173,7 @@ module.exports.getAllUserClaimsDetails = function (req, res) {
                                     itemName : item.name || "",
                                     itemDescription: item.description || "",
                                     userName : user.name || "",
-                                    claim : i
+                                    claim : c
                                 });
                                 if(claim.length === k){
                                     sendJSONresponse(res, 200, list)
@@ -186,19 +192,21 @@ module.exports.userClaimsOwnerDetails = function (req, res) {
     let k=0;
     Claim.find({userOwnerId : req.params.id}).then(
         function (claim) {
-            for(i of claim){
-                console.log(i);
-                Item.findById(i.itemId).then(
+            if(claim.length === 0) {
+                sendJSONresponse(res, 204, []);
+                return;
+            }
+            for(let c of claim){
+                Item.findById(c.itemId).then(
                     function (item) {
-                        console.log(item)
-                        User.findById(item.userHolderId).then(
+                        User.findById(c.userHolderId).then(
                             function (user) {
                                 k++;
                                 list.push({
                                     itemName : item.name || "",
                                     itemDescription: item.description || "",
                                     userName : user.name || "",
-                                    claim : i
+                                    claim : c
                                 });
                                 if(claim.length === k){
                                     sendJSONresponse(res, 200, list)

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {Row} from 'react-bootstrap/lib';
+import { Row, Button, Clearfix } from 'react-bootstrap/lib';
+import no_image_avalible from '../../images/no_image_available.png';
+import Auth from '../../modules/Auth';
 import ImageColumn from '../shared/ImageColumn';
 import TextColumn from '../shared/TextColumn';
 import LoadingStatus from '../shared/LoadingStatus';
@@ -8,10 +10,13 @@ class ItemDetailsContainer extends Component {
     constructor(props) {
         super(props)
 
+        this.handleReserve = this.handleReserve.bind(this);
+
         this.id = this.props.match.params.id;
         this.state = {
             isError: false,
             isLoading: false,
+            reservable: false,
             name: "",
             image: "",
             description: "",
@@ -22,6 +27,40 @@ class ItemDetailsContainer extends Component {
             statusText: "",
             statusColor: "",
         };
+    }
+
+    handleReserve() {
+        this.setState({
+            isLoading: true
+        });
+        let _this = this;
+        let data = {
+            itemId: this.id,
+            userOwnerId: this.state.userOwnerId,  // prima request
+            userHolderId: Auth.getId(),  // radi request
+            date : new Date()
+        }
+        fetch(`/api/userRequest`, {
+                method: "POST",
+                body: JSON.stringify(data),
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(res => {
+                _this.setState({
+                    isLoading: false,
+                    reservable: false
+                })
+            })
+            .catch(err => {
+                _this.setState({
+                    isError: true,
+                    isLoading: false
+                });
+            });
     }
 
     componentDidMount() {
@@ -44,6 +83,25 @@ class ItemDetailsContainer extends Component {
                     statusText: avalible ? "slobodno" : "zauzeto",
                     statusColor: avalible ? "success" : "danger"
                 });
+                if (avalible && Auth.isUserAuthenticated()) {
+                    let userId = Auth.getId();
+                    if (userId !== item.userOwnerId) {
+                        fetch(`/api/itemRequests/${this.id}`)
+                            .then(response => response.json())
+                            .then(claims => {
+                                let reservable = true;
+                                for (let claim of claims) {
+                                    if (userId === claim.userHolderId) {
+                                        reservable = false;
+                                        break;
+                                    }
+                                }
+                                _this.setState({
+                                    reservable: reservable
+                                })
+                            })
+                    }
+                }
                 return item.userOwnerId;
             })
             .then(userOwnerId => {
@@ -84,6 +142,18 @@ class ItemDetailsContainer extends Component {
             md: 6
         }
 
+        const ReserveButton = () => !this.state.reservable ? null : (
+                <Button bsStyle="danger" onClick={this.handleReserve}>
+                    Rezerviraj
+                </Button>
+            );
+
+        const OwnerProfileButton = () => !this.state.userOwnerId ? null : (
+                <Button href={`/profile/${this.state.userOwnerId}`}>
+                    Profil vlasnika
+                </Button>
+            );
+
         return (
             <Row>
                 <LoadingStatus isError={this.state.isError} isLoading={this.state.isLoading} />
@@ -97,10 +167,16 @@ class ItemDetailsContainer extends Component {
                 />
                 <ImageColumn 
                     size={imageWidth}
-                    image={this.state.image}
+                    image={this.state.image || no_image_avalible}
                     status={this.state.statusColor}
                     info={this.state.statusText}
                  />
+                <Clearfix />
+                <br />
+                <br />
+                <OwnerProfileButton />
+                &nbsp;
+                <ReserveButton />
             </Row>
         );
     }

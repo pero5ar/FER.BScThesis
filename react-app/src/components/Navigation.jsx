@@ -110,7 +110,7 @@ class Navigation extends Component {
                     </Navbar.Form>
                 </Nav>
                 <Nav pullRight>
-                    <NavItem eventKey={1} onClick={e => this.handleLink("/notifications", e)}>Obavijesti</NavItem>
+                    <NavItem eventKey={1} onClick={e => this.handleLink("/reservations", e)}>Rezervacije</NavItem>
                     <NavItem eventKey={2} onClick={e => this.handleLink("/profile", e)}>Profil</NavItem>
                     <NavItem eventKey={3} onClick={this.logOut}>Odjava</NavItem>
                 </Nav>

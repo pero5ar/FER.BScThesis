@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import {Row} from 'react-bootstrap/lib';
+import { Row, Col, Clearfix, Button, Collapse } from 'react-bootstrap/lib';
+import Auth from '../../modules/Auth';
 import ImageColumn from '../shared/ImageColumn';
 import TextColumn from '../shared/TextColumn';
 import LoadingStatus from '../shared/LoadingStatus';
+import EditProfileForm from './EditProfileForm';
 
 class ProfileContainer extends Component {
     constructor(props) {
         super(props)
+
+        this.handleFormCollapse = this.handleFormCollapse.bind(this);
 
         this.id = this.props.match.params.id;
         this.state = {
@@ -25,7 +29,11 @@ class ProfileContainer extends Component {
         };
     }
 
-     componentDidMount() {
+    handleFormCollapse() {
+        this.setState({ openForm: !this.state.openForm });
+    }
+
+    componentDidMount() {
         this.setState({
             isError: false,
             isLoading: true
@@ -52,7 +60,7 @@ class ProfileContainer extends Component {
                     isLoading: false
                 })
             });
-     }
+    }
 
     render() {
         const textWidth = {
@@ -64,6 +72,12 @@ class ProfileContainer extends Component {
             md: 4
         }
 
+        const OpenFormButton = () => this.state.openForm ? null : (
+                <Button onClick={this.handleFormCollapse}>
+                    Uredi Profil
+                </Button>
+            );
+
         return (
             <Row>
                 <LoadingStatus isError={this.state.isError} isLoading={this.state.isLoading} />
@@ -72,7 +86,7 @@ class ProfileContainer extends Component {
                     image={this.state.image}
                     status={this.state.statusColor}
                     info={this.state.statusText}
-                 />
+                />
                 <TextColumn
                     size={textWidth}
                     text={{
@@ -81,6 +95,19 @@ class ProfileContainer extends Component {
                         body: this.state.description
                     }}
                 />
+                <Clearfix />
+                <br />
+                <br />
+                { this.id === Auth.getId() &&
+                <Col xs={12}>
+                    <Collapse in={this.state.openForm} timeout={5000}>
+                        <div>
+                            <EditProfileForm handleFormCollapse={this.handleFormCollapse} />
+                        </div>
+                    </Collapse>
+                    <OpenFormButton />
+                </Col>
+                }
             </Row>
         );
     }
