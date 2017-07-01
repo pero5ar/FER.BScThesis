@@ -88,6 +88,7 @@ class NewOfferForm extends Component {
                     placeholder="Upiši naziv ponude"
                     value={this.state.name}
                     onChange={this.handleNameInputChange}
+                    maxLength={70}
                     required />
                 <FieldGroup
                     id="formControlsURL"

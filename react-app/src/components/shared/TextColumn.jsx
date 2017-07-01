@@ -8,7 +8,12 @@ class TextColumn extends Component {
                 <h2>{this.props.text.title}</h2>
                 <h3>{this.props.text.subtitle}</h3>
                 <br />
-                <p>{this.props.text.body}</p>
+                <p>{this.props.text.body.split("\n").map(line =>
+                        <span>
+                            {line}
+                            <br />
+                        </span>
+                    )}</p>
             </Col>
         );
     }
