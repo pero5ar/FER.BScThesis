@@ -104,17 +104,51 @@
 
 % Uvod
 \chapter{Uvod}
-Uvod rada. Nakon uvoda dolaze poglavlja u kojima se obrađuje tema.
 
-Ideja razmjene znanja, razmjene iskustva i ideja je uvijek bila jedna od ključnih karakteristika čovjekove prirode.
-Radoznalost i potreba za prenošenjem znanja na druge ljude, pogotovo onih mlađe generacije, je i dovela do brzog razvoja čovječanstva i učestalosti novih otkrića.
+Potreba za razmjenom znanja, za razmjenom iskustava i ideja je jedna od ključnih karakteristika koja čini čovjeka čovjekom.
+Upravo je ta potreba, kao i sposobnost da je ispuni kvalitetnije od bilo kojeg drugog bića, snažno utjecala na evoluciju čovjeka i dovela nas na poziciji gdje se nalazimo danas.
+Na poziciji vrha hranidbenog lanca i neosporivo dominantnoj vrsti na Zemlji.
 
-U modernom vremenu bilježimo neiscrpne količine multimedijskog sadržaja u digitalnom izdanju, no ipak se nije sve uspijelo prenijeti u taj format.
-Pogotovo kada je riječ o starijim manje popularnim uradcima ili primjercima napisanim u jezicima s manjim brojem govornika (kao što je hrvatski).
+Nije iznenađenje kako mnoge drevne kulture i civilizacije imaju priče u kojima nekakvo božanstvo prenosi svoje znanje ljudima.
+Znanje uz pomoć kojeg ljudi postaju moćniji od svih ostalih smrtnih stvorenja.
+Jedna takva priča je mit o Prometeju, titanu iz grčke mitologije koji je ukrao vatru s Olimpa i darovao je ljudima kako bi omogućio razvoj civilizacije.
 
-Čovjek još uvijek ima potrebu za dijeljenjem, za prenošenjem znanja i iskustva, ali u ubrzanom ritmu današnjice nedostaje mu platforma za brzo i jednostavno dijeljenje i nalaženje sadržaja koji nema svoj digitalan format. 
+\razmakp
 
-(...todo...)
+U modernom vremenu čovjek ima gotovo neiscrpan izvor znanja.
+Putem interneta može naći gotovo sve što poželi, no ipak nije sav sadržaj dospio u digitalan oblik.
+To je, između ostalog, slučaj s jako specifičnim sadržajima, kao što su fakultetske skripte čija je ideja da jednostavnim jezikom sažmu i prezentiraju akademsko znanje, te sadržajima koji su na jeziku s relativno malim brojem govornika, kao što je slučaj s hrvatskim jezikom.
+
+Jeste li ikad pokušali naći podatke na hrvatskom jeziku o nekoj knjizi, a da ona nije dio popisa za lektiru?
+Jeste li ikad tražili funkcionalni primjerak videoigre izrađene u devedesetima?
+Jeste li se ikad mučili s nalaženjem neke knjige koju ste htjeli pročitat?
+Da je niste mogli naći u lokalnoj knjižnici ni u antikvarijatu, a u knjižarama je bila ili preskupa ili nije bila na policama, već bi se morala čekati više od mjesec dana da stigne putem narudžbe?
+
+Vjerujem da smo se mnogi barem jednom našli u takvoj ili sličnoj situaciji.
+
+\razmakp
+
+Za sve te sadržaje, koje je teško naći na standardne načine, često postoji osoba koja im je vlasnik i voljna ga je posuditi.
+No problem je kako naći takvu osobu, odnosno kako osobi koja je voljna nešto posuditi omogućiti da to da do znanja drugima.
+\razmaks
+
+Aplikacija čije je korisničko sučelje tema ovog rada ima za cilj riješiti upravo taj problem.
+
+\razmakp
+
+Ideja aplikacije je omogućiti korisnicima u hrvatskom govornom području da ponude svoje knjige, skripte, stripove, CD-ove i sl. na posuđivanje.
+Odnosno, omogućiti drugim korisnicima da pronađu takav sadržaj.
+Isto kao što je Prometej besebično ponudio vatru ljudima, tako korisnici aplikacije mogu drugim korisnicima ponuditi ono što imaju i time stvoriti \emph{virtualnu knjižnicu} za razmjenu multimedijskog sadržaja.
+
+\razmakp
+
+U ovom radu je razmotren i riješen problem izgradnje jednostavnog i interaktivnog korisničkog sučelja takve knjižnice.
+Također su u radu istražene moderne tehnologije i alati za razvoj korisničkih sučelja.
+Detaljno o njima se može pročitati u drugom poglavlju.
+Ključna je biblioteka React opisana u potpoglavlju \ref{sec:react}.
+
+Poslije korištenih tehnologija, u trećem poglavlju, je detaljno opisan zadatak rada te su specificirani zahtjevi, dok se opis same implementacije zadatka nalazi se u četvrtom poglavlju.
+Nakon implementacije, u petom i zadnjem poglavlju, slijedi zaključak cjelokupnog rada.
 
 
 % Korištene tehnologije
@@ -152,7 +186,7 @@ function varTest() {
 Varijabla definirana u \emph{if}-bloku je ista kao ona van njega, odnosno blok nije imao utjecaj na djelokrug varijable onako kako bismo očekivali u ostalim jezicima C-ovske sintakse.
 \razmakp
 
-Ovaj problem se može riješiti korištenjem ključne riječi \emph{let} umjesto \emph{var}.\citep{MDNLet}
+Ovaj problem može se riješiti korištenjem ključne riječi \emph{let} umjesto \emph{var}\citep{MDNLet}.
 
 \razmakp
 \begin{lstlisting}[language=JavaScript, caption={Primjer djelokruga \emph{let} varijable}, label={lst:let_example}]
@@ -196,7 +230,7 @@ Budući da se \emph{let} varijable ponašaju više u skladu s očekivanjem, pogo
 \razmakp
 
 Kako u starim verzijama nije bilo drugog načina deklariranja varijable dalje od ključne riječi \emph{var} i globalnih varijabli, programer je morao sam paziti da ne promjeni vrijednost varijabli koje si je odredio kao konstante
-U novom standardu je taj problem riješen ključnom riječi \emph{const}.\citep{MDNConst}
+U novom standardu je taj problem riješen ključnom riječi \emph{const}\citep{MDNConst}.
 
 \razmakp
 \begin{lstlisting}[language=JavaScript, caption={Deklariranje konstante}]
@@ -215,11 +249,11 @@ Po pitanju djelokruga, ponašanje konstanti je identično ponašanju \emph{let} 
 
 Glavna novost u ECMAScript 2015 je uvođenje klasa.
 Prethodno se nasljeđivanje u JavaScriptu ostvarivalo kreiranjem objekata iz postojećih objekata te dodavanju novih metoda i atributa novostvorenom objektu.
-Odnosno svaki objekt u JavaScriptu ima skriveno svojstvo prototip \engl{prototype} koje sadrži poveznicu do nekog drugog objekta, putem kojeg možemo ostvariti nasljeđiavnje.\citep{MDNPrototype}
+Odnosno svaki objekt u JavaScriptu ima skriveno svojstvo prototip \engl{prototype} koje sadrži poveznicu do nekog drugog objekta, putem kojeg možemo ostvariti nasljeđiavnje\citep{MDNPrototype}.
 Takva mehanika je puno moćnija od korištenja klasa, odnosno nudi puno više fleksibilnosti, no istovremeno uzrokuje puno nejasniju strukturu koda.
 
-Klase u novom standardu su ostvarene kao poseban oblik funkcija.\citep{MDNClass}
-Oba objekta se deklariraju i rukuju na identičan način, samo za različite svrhe.
+Klase u novom standardu su ostvarene kao poseban oblik funkcija\citep{MDNClass}.
+Oba se objekta deklariraju i rukuju na identičan način, samo za različite svrhe.
 Pri prevođenju JavaScripta pisanog u novom standardu u stariji (zbog kompatibilnosti sa starijim preglednicima) klase se prevode u funkcije.
 (Primjer: isječak koda \ref{lst:class_example_old_js} - izrađen putem prevoditelja Babel\footnote{\url{https://babeljs.io}}).
 
@@ -251,7 +285,7 @@ var Rectangle = function Rectangle(height, width) {
 \end{lstlisting}
 \razmaks
 
-Nasljeđivanje klasa se postiže sintaksom sličnom programskom jeziku Java.
+Nasljeđivanje klasa postiže se sintaksom sličnom programskom jeziku Java.
 Ključna riječ kojom se definira nasljeđivanje je \emph{extends}, dok se nadklasa poziva s ključnom riječi \emph{super}.
 
 \razmakp
@@ -286,7 +320,7 @@ l.speak();
 Obećanje \engl{Promise} je poseban objekt koji predstavlja izvršavanje asinkrone operacije.
 Ideja je da se neka asinkrona operacija (npr. dohvat podataka s poslužitelja) omota u obećanje kako bi se definiralo što će se izvršiti u slučaju uspjeha ili neuspjeha.
 Operacija koja se izvršava nakon obećanja može ponovno biti obećanje.
-To nizanje obećanja \engl{chaining}, koje se ostvaruje putem funkcije \emph{then}, je zgodno rješenje kada logika zahtjeva višestruko ugnježđivanje funkcija povratnog poziva \engl{callback function}.\citep{MDNUsingPromises}
+To nizanje obećanja \engl{chaining}, koje se ostvaruje putem funkcije \emph{then}, je zgodno rješenje kada logika zahtjeva višestruko ugnježđivanje funkcija povratnog poziva \engl{callback function}\citep{MDNUsingPromises}.
 Primjer toga je u sljedećem isječku koda (\ref{lst:callback_vs_promises})
 
 \razmakp
@@ -351,7 +385,7 @@ doSomething()
 Na prvi pogled ništa novo, samo kraći zapis postojeće funkcionalnosti, no \emph{arrow} funkcije nisu u potpunosti ekvivalentne već postojećim anonimnim funkcijama u JavaScriptu.
 Unutar tijela starih anonimnih funkcija, referenca \emph{this} se odnosila na okolinu, tj. objekt kojem je funkcija pridružena, a ne gdje je definirana.
 To je zahtjevalo dodatnu pažnju programera pri baratanju tom ključnom riječi.
-\emph{Arrow} funkcije ne pate od tog problema, one ne mijenjaju referencu \emph{this} pri stvaranju novog objekta funkcije, već pozivaju \emph{this} u kojem su definirane.\citep{MDNArrowFunc}
+\emph{Arrow} funkcije ne pate od tog problema, one ne mijenjaju referencu \emph{this} pri stvaranju novog objekta funkcije, već pozivaju \emph{this} u kojem su definirane\citep{MDNArrowFunc}.
 
 \razmakp
 
@@ -382,14 +416,14 @@ method2();  // Object2
 
 
 % React
-\section{React}
+\section{React} \label{sec:react}
 
-React je JavaScript biblioteka otvorenog koda namijenjena brzoj i jednostavnoj izgradnji korisničkog sučelja. Razvijena je od strane Facebooka 2013.\ godine i zadnja stabilna verzija u trenutku pisanja ovog rada je 15.5.4.\citep{reactWiki}
+React je JavaScript biblioteka otvorenog koda namijenjena brzoj i jednostavnoj izgradnji korisničkog sučelja. Razvijena je od strane Facebooka 2013.\ godine i zadnja stabilna verzija u trenutku pisanja ovog rada je 15.5.4.\citep{reactWiki}.
 U izvorima se biblioteka također može naći pod nazivima \emph{React.js} i \emph{ReactJS}, dok je React Native radni okvir za razvoj mobilnih aplikacija u JavaScriptu na sličan način kako se web aplikacije grade u Reactu.
 
 Bitno je za naglasiti da, iako je React biblioteka \engl{library}, nije u potpunosti netočno zvati je radnim okvirom \engl{framework}.
 Tokom vremena nagomilalo se mnoštvo biblioteka i radnih okvira za korištenje sa samim Reactom, da se pod izrazom \glqq React\grqq često podrazumijeva i njihovo korištenje, što daje dojam cjelokupnog radnog okvira.
-No, po svojoj definiciji je biblioteka.\citep{reactGithub}
+No, po svojoj definiciji je biblioteka\citep{reactGithub}.
 
 \razmakp
 
@@ -397,20 +431,23 @@ Reactom se grade jednostranične \engl{single page} web aplikacije.
 Produkcijska verzija React stranice se često sastoji od jedne male HTML datoteke (reda veličine dvadesetak linija koda) i JavaScript datoteke od nekoliko desetaka tisuća linija koda\footnote{Tijekom razvoja je kod u više datoteka koje se zapakiraju u jednu pri gradnji produkcijske verzije.}.
 Razlog tomu je što je sav sadržaj stranice ugrađen u JavaScript kako bi se mogao dinamički mijenjati.
 
-React se koristi virtualnim DOM-om \engl{virtual DOM\footnote{krat. \emph{Document Object Model}}}.
+React koristi virtualni DOM \engl{virtual DOM\footnote{krat. \emph{Document Object Model}}}.
 Virtualni DOM je apstrakcija standardnog HTML DOM-a koja se koristi kako bi se izbjegle skupe operacije dodavanja i brisanja elemenata u DOM-u.
 Efikasnim upravljanjem virtualnim DOM-om, elementi se crtaju u stvarni DOM samo kada je to potrebno, odnosno crtaju se samo elementi koji su se promijenili.
 Primjerice, nepotrebno je da se svaki put iznova crta (odnosno iščitava iz HTML dokumenta) navigacija, ako se samo mijenja sadržaj ispod nje.
 
 \razmakp
 
-\subsection{Komponente}
-Filozofija Reacta je rastaviti korisničko sučelje na komponente kao izolirane cjeline koje se mogu ponovno upotrijebiti.\citep{react}
+
+% Komponente
+\subsection{Komponente} \label{sec:components}
+
+Filozofija Reacta je rastaviti korisničko sučelje na komponente kao izolirane cjeline koje se mogu ponovno upotrijebiti\citep{react}.
 Instance komponenti se, slično HTML DOM elementima, organiziraju u stablastu strukturu.
 Za razliku od DOM elemenata, komponente imaju vlastito stanje i logiku.
-React komponente nasljeđuju klasu \emph{React.Component} te obavezno implementiraju \emph{render} metodu koja vraća React element, odnosno stablo React elemenata.\citep{reactDocsComponent}
+React komponente nasljeđuju klasu \emph{React.Component} te obavezno implementiraju \emph{render} metodu koja vraća React element, odnosno stablo React elemenata\citep{reactDocsComponent}.
 React elementi su nepromjenjivi objekti čije je stvaranje jeftina operacija.
-Crtaju se kao elementi DOM-a po potrebi.\citep{reactDocsRenderElem}
+Crtaju se kao elementi DOM-a po potrebi\citep{reactDocsRenderElem}.
 
 \razmakp
 \begin{lstlisting}[language=JavaScript, caption={Primjer komponente}, label={lst:component_example}]
@@ -456,17 +493,17 @@ Metoda \emph{constructor} se koristi za inicijaliziranje stanja, dok se logika p
 Razlog tomu je što promjena stanja u \emph{componentDiDMount} izaziva ponovno crtanje komponente u DOM-u, odnosno poziv metode \emph{render}.
 Stanje se mijenja pozivanjem metode \emph{setState} nad objektom komponente (\glqq \emph{this.setState()}\grqq ).
 Ta metoda je asinkrona, stoga promjena stanja ne blokira daljnje pozive metoda u životnom ciklusu.
-Ponovno crtanje se može izbjeći ako se metodu \emph{shouldComponentUpdate} postavi da vraća \emph{false}.
-U tom slučaju ponovno crtanje komponente se može postići samo pozivanjem metode \emph{force update}.
+Ponovno crtanje može se izbjeći ako se metodu \emph{shouldComponentUpdate} postavi da vraća \emph{false}.
+U tom slučaju ponovno crtanje komponente može se postići samo pozivanjem metode \emph{force update}.
 
 \razmakp
 \razmakp
 
-Uz stanje postoji još jedno ugrađeno svojstvo komponente, a to je \emph{props}.\citep{reactDocsComp&Props}
+Uz stanje postoji još jedno ugrađeno svojstvo komponente, a to je \emph{props}\citep{reactDocsComp&Props}.
 Ono se koristi kao objekt putem kojeg se predaju argumenti iz više komponente u nižu.
 Primjer takvog korištenja je komponenta koja sadrži listu drugih komponenti, a treba odrediti nazive i ključeve potkomponenti.
 U tom slučaju se, pri stvaranju potkomponenti kojima se nadjačava konstruktor, mora paziti da se koristi oblik konstruktora kakav je prikazan u isječku koda \ref{lst:component_props_example}.
-Ako se ne definira vlastiti konstruktor, taj se oblik konstruktora nasljeđuje iz nadklase.\footnote{U isječku koda \ref{lst:component_props_example} je pisanje konstruktora nepotrebno.}
+Ako se ne definira vlastiti konstruktor, taj oblik konstruktora nasljeđuje se iz nadklase.\footnote{U isječku koda \ref{lst:component_props_example} je pisanje konstruktora nepotrebno.}
 
 \razmakp
 \begin{lstlisting}[language=JavaScript, caption={Primjer komponente s \emph{props}}, label={lst:component_props_example}]
@@ -483,7 +520,7 @@ class Welcome extends React.Component {
 \razmaks
 
 Svojstva se pridodaju objektu \emph{props} iz nadkomponente na način kako je prikazano u isječku koda \ref{lst:component_sending_props}.
-Pojašnjenje sintakse se može pronaći u pododjeljku \ref{sec:jsx}.
+Pojašnjenje sintakse može se pronaći u pododjeljku \ref{sec:jsx}.
 
 \razmakp
 \begin{lstlisting}[language=JavaScript, caption={Primjer korištenja \emph{props}}, label={lst:component_sending_props}]
@@ -518,7 +555,7 @@ Datoteke koje koriste ovo sintaksno proširenje se često pišu s ekstenzijom \g
 
 U isječku koda \ref{lst:component_sending_props} \emph{render} metoda komponente \emph{App} vraća tri instance komponente \emph{Welcome} ugnježđene u \emph{div}.\footnote{U metodi \emph{render} sve korištene komponente uvijek moraju biti ugnjeđene u jednu vršnu komponentu.}
 Argumenti koji se predaju kao svojstva objekta \emph{props} pri stvaranju React elementa se pišu kao atributi DOM elemenata.
-Budući da se u ovoj sintaksi React elementi mogu kombinirati s HTML elementima, pravilo je da se React elementi pišu velikim početnim slovom.\citep{reactDocsJSX}
+Budući da se u ovoj sintaksi React elementi mogu kombinirati s HTML elementima, pravilo je da se React elementi pišu velikim početnim slovom\citep{reactDocsJSX}.
 
 Ovakav format daje čitku strukturu kako će se React elementi posložiti u DOM-u.
 Primjerice, poziv metode \emph{render} iz klase \emph{App} bi rezultirao stvaranjem HTML koda kao u isječku \ref{lst:elements_html}.
@@ -584,7 +621,7 @@ class App extends React.Component {
 
 U interaktivnoj aplikaciji često je potrebno na promjenu jednog elementa mijenjati drugi.
 Primjerice, na unos teksta u okvir za pretraživanje filtrirati retke tablice s obzirom na neku od vrijednosti.
-U Reactu se ta funkcionalnost postiže podizanjem stanja.\citep{reactDocsLiftStateUp}
+U Reactu se ta funkcionalnost postiže podizanjem stanja\citep{reactDocsLiftStateUp}.
 
 Na istom tom primjeru, ako su komponente okvira za unost teksta i tablice ugniježđene u zajedničkoj roditeljskoj komponenti, vrijednost teksta koji se unosi i lista s podacima za retke tablice bi se definirali kao atributi stanja te roditeljske komponente.
 Ugniježđene komponente bi putem \emph{props} primile te atribute iz roditeljske komponente.
@@ -602,7 +639,7 @@ U opisanom primjeru su podaci vrijednosti koje se šalju elementima, dok je akci
 \section{Paket \emph{create-react-app}}
 
 Npm\footnote{Upravitelj paketa za JavaScript, primarno korišten uz Node.js.} paket \emph{create-react-app} omogućuje stvaranje podešene React aplikacije, u svrhu bržeg i lakšeg razvoja nove aplikacije.
-Aplikacija stvorena ovim paketom ima podešen prevoditelj \emph{Babel}\footnote{Prevodi novije JavaScript funkcionalnosti u stari standard, \url{http://babeljs.io} }, upravitelj modulima \emph{webpack}\footnote{Sažima sve module i pakete o kojima ovise u statičke resurse, \url{https://webpack.github.io} } i mnoge druge dodatke koji su često potrebni u razvoju React aplikacija.\citep{createReactAppGithub}
+Aplikacija stvorena ovim paketom ima podešen prevoditelj \emph{Babel}\footnote{Prevodi novije JavaScript funkcionalnosti u stari standard, \url{http://babeljs.io} }, upravitelj modulima \emph{webpack}\footnote{Sažima sve module i pakete o kojima ovise u statičke resurse, \url{https://webpack.github.io} } i mnoge druge dodatke koji su često potrebni u razvoju React aplikacija\citep{createReactAppGithub}.
 Podešene su također i skripte za pokretanje, testiranje i izradu produkcijske verzije.
 
 Sve te postavke su skrivene, a programer nakon stvaranja aplikacije vidi strukturu kao u slici \ref{fig:app-structure}.\footnote{Mapa novostvorene aplikacije na disku zauzima prostor od otprilike 100 MB.}
@@ -627,8 +664,8 @@ Pri gradnji jednostraničnioh web aplikacija, često nije u cilju da se korisnik
 Korisnik želi imati mogućnosti da putem poveznice izravno dođe do nekog dijela aplikacije ili da se vrati na prethodno stanje aplikacije klikom \emph{Nazad} u pregledniku, kao što to može s klasičnim web stranicama.\footnote{Ovdje se izraz \emph{web stranica} odnosi na engl. \emph{website}, odnosno kolekciju stranica \engl{web page}.}
 
 Takvo ponašanjem se unutar React aplikacije može postići koristeći API paketa \emph{react-router}.
-Putem njega se dobije pristup promjenjivom objektu povijesti \engl{history}, kojim se služi kao s povijesti preglednika, te gotovim navigacijskim komponentama za upravljanje s tom povijesti.
-Jedini uvjet za korištenje tih mogućnosti je da su komponente koje ih koriste ugniježđene u komponenti \emph{Router}.\citep{reactRouter}
+Putem njega dobije se pristup promjenjivom objektu povijesti \engl{history}, kojim se služi kao s povijesti preglednika, te gotovim navigacijskim komponentama za upravljanje s tom povijesti.
+Jedini uvjet za korištenje tih mogućnosti je da su komponente koje ih koriste ugniježđene u komponenti \emph{Router}\citep{reactRouter}.
 
 \razmakp
 \begin{lstlisting}[language=JavaScript, caption={Primjer korištenja \emph{react-router}}, label={lst:react_router_example}]
@@ -670,7 +707,7 @@ U slučaju da u prethodno navedenom primjeru nije korišten \emph{exact}, na put
 
 \emph{Route} komponente se mogu dodatno ugnijezditi i u komponentu \emph{Switch}.
 \emph{Switch} komponenta definira logiku da se crta samo komponenta prvog \emph{Route} koji se podudara s putanjom.
-Korištenjem ove logike se može definirati i posljednja \emph{Route} komponeta za pokrivanje slučaja neočekivanih putanja, kao što je prikazano u isječku koda \ref{lst:react_router_switch}.
+Korištenjem ove logike može se definirati i posljednja \emph{Route} komponeta za pokrivanje slučaja neočekivanih putanja, kao što je prikazano u isječku koda \ref{lst:react_router_switch}.
 U tom primjeru se također koristi \emph{exact}, jer bi se u protivnom na svim rutama koje počinju s \glqq / \grqq ~ odabrala prva komponenta.
 
 \razmakp
@@ -710,7 +747,7 @@ Budući da Bootstrap postoji od 2011.\citep{bootstrapWiki}, na internetu postoji
 \razmakp
 
 Paket \emph{react-bootstrap} nudi osnovne Bootstrap elemente, odnosno klase zapakirane kao React komponente.
-U trenutku pisanja ovog rada paket je još u razvoju i nema stabilnu verziju, no implementirani su neki od ključnih elementa koje pomažu u razvoju aplikacije (primjerice navigacijska traka).\citep{bootstrapReact}
+U trenutku pisanja ovog rada paket je još u razvoju i nema stabilnu verziju, no implementirani su neki od ključnih elementa koje pomažu u razvoju aplikacije (primjerice navigacijska traka)\citep{bootstrapReact}.
 
 \newpage
 
@@ -720,7 +757,7 @@ U trenutku pisanja ovog rada paket je još u razvoju i nema stabilnu verziju, no
 
 Fetch API je JavaScript sučelje za dohvaćanje resursa koji u odnosu na tradicionalni XMLHttpRequest\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest}}, nudi puno veći i moćniji skup mogućnosti.
 
-Fetch omogućuje generičku definiciju objekata \emph{Request} i \emph{Response}, čime znatno proširuje područje svoje uporabe jer postiže kompatibilnost s drugim tehnologijama kao što su Service Worker API\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API}}, Cache\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Cache}} i sl.\citep{MDNFetch}
+Fetch omogućuje generičku definiciju objekata \emph{Request} i \emph{Response}, čime znatno proširuje područje svoje uporabe jer postiže kompatibilnost s drugim tehnologijama kao što su Service Worker API\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API}}, Cache\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Cache}} i sl.\citep{MDNFetch}.
 Osim toga, nudi jedinstveno mjesto za definiciju koncepata kao što su CORS\footnote{engl. \emph{Cross-Origin Resource Sharing}, \url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS}} i HTTP ekstenzije.
 
 \razmakp
@@ -729,7 +766,7 @@ Za dohvaćanje resursa i slanje zahtjeva koristi se metoda \emph{GlobalFetch.fet
 Osim što je raspoloživa, nudi jednostavan i logičan način za asinkrono dohvaćanje resursa kroz mrežu.
 
 Metoda \emph{fetch} kao obavezni parametar prima putanju do resursa koji se treba dohvatiti, a vraća obećanje\footnote{Vidi pododjeljak \ref{sec:promise}.} u obliku objekta tipa \emph{Response}.
-Proizvoljni argument je \emph{init} objekt koji predstavlja dodatne postavke za metodu \emph{fetch}.\citep{MDNUsingFetch}
+Proizvoljni argument je \emph{init} objekt koji predstavlja dodatne postavke za metodu \emph{fetch}\citep{MDNUsingFetch}.
 
 \razmakp
 
@@ -737,7 +774,7 @@ Ako se \emph{fetch} usporedi sa svojim raširenim srodnikom \emph{jQuery.ajax}, 
 Kao prvu bitnu razliku treba spomenuti to da će se \emph{fetch} normalno izvršavati i za HTTP statuse koji inače predstavljaju grešku (npr. HTTP status 404 ili 500), samo će postaviti vrijednost svog OK statusa na false.
 Jedina situacija u kojoj će odbiti mrežu zbog neuspjeha je ako nešto spriječi zahtjev da se izvrši u potpunosti.
 
-Osim toga, \emph{fetch}, u svome pretpostavljenom ponašanju, ne šalje i ne prima kolačiće \engl{cookies} s poslužitelja što može prouzročiti zahtjeve bez autentifikacije u slučaju da se stranica oslanja na kolačiće.
+Osim toga, \emph{fetch}, u svome pretpostavljenom ponašanju, ne šalje i ne prima kolačiće \engl{cookies}\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies}} s poslužitelja što može prouzročiti zahtjeve bez autentifikacije u slučaju da se stranica oslanja na kolačiće.
 Za slanje kolačića, nužno je slati zaglavlje \emph{credentials}.
 
 \newpage
@@ -756,15 +793,15 @@ Isječak koda \ref{lst:fetch_get} pokazuje primjer korištenja metode \emph{fetc
 Metoda prima putanju do željenog resursa i vraća obećanje koje sadrži objekt \emph{Response} koji predstavlja HTTP odgovor \engl{response}.
 
 U primjeru se zatim primljeni objekt parsira u JSON objekt pozivanjem metode \emph{json}.
-No, ovisno o prirodi resursa, mogla se primjeniti bilo koja od navedenih metoda: \emph{json}, \emph{text}, \emph{blob}, \emph{formData}, \emph{arrayBuffer}, \emph{redirect} ili \emph{clone}.\citep{fetch}
-Navedene metode mogu se izvršavati na objektima tipa \emph{Request} i \emph{Response}, što znači da se mogu se koristiti i pri slanju zahtjeva.
+No, ovisno o prirodi resursa, mogla se primjeniti bilo koja od navedenih metoda: \emph{json}, \emph{text}, \emph{blob}, \emph{formData}, \emph{arrayBuffer}, \emph{redirect} ili \emph{clone}\citep{fetch}.
+Navedene metode mogu se izvršavati na objektima tipa \emph{Request} i \emph{Response}, što znači da se mogu koristiti i pri slanju zahtjeva.
 To čini korištenje ne-tekstualnih podataka puno jednostavnijim nego što je to bilo s XMLHttpRequest.
 
 \razmakp
 
 Na isječku koda \ref{lst:fetch_post} prikazan je HTTP POST zahtjev \engl{HTTP POST request} izveden korištenjem metode \emph{fetch}.
 Kao drugi parametar šalje se \emph{init} objekt u kojemu se tip metode postavlja na POST.\footnote{Podrazumjevana metoda je GET pa zato nije naveden tip metode u primjeru u isječku koda \ref{lst:fetch_get}.}
-Osim metode, po potrebu se mogu postaviti dodatni atributi, kao što su npr. \emph{mode} i \emph{headers} atributi.
+Osim metode, po potrebi mogu se postaviti dodatni atributi, kao što su npr. \emph{mode} i \emph{headers} atributi.
 
 \razmakp
 \begin{lstlisting}[language=JavaScript, caption={Primjer slanja resursa s Fetch API}, label={lst:fetch_post}]
@@ -915,7 +952,7 @@ Uz navedene funkcionalne zahtjeve korisnika, aplikacija mora također ispuniti s
   \item aplikacija mora biti funkcionalna na svim modernim web preglednicima sa značajnom zastupljenosti na tržištu
   \item funkcionalnosti aplikacije za čije je uspješno izvršavanje potrebna prijava ne smiju biti dostupne bez prijave
   \item navigacija do glavnih dijelova aplikacije mora biti dostupna u svim sučeljima
-  \item do glavnih dijelova aplikacije se mora moći pristupiti putem povijesti preglednika
+  \item do glavnih se dijelova aplikacije mora moći pristupiti putem povijesti preglednika
   \item sučelje aplikacije mora biti prilagodljivo za različite veličine ekrana
   \item sučelje ne smije sadržavati autorski sadržaj bez dopuštenja autora
   \item sučelje mora biti napisano na hrvatskom jeziku i podržavati hrvatske znakove
@@ -930,7 +967,7 @@ Uz navedene funkcionalne zahtjeve korisnika, aplikacija mora također ispuniti s
 % Arhitektura i dizajn
 \section{Arhitektura i dizajn}
 
-Arhitektura aplikacije se temelji na hijerarhiskoj raspodijeli komponenti.\footnote{Arhitektura temeljena na komponenata \engl{Component-Based Arhitecture} je tipičan način gradnje React aplikacija.\citep{understandingCBA}}
+Arhitektura aplikacije temelji se na hijerarhiskoj raspodijeli komponenti.\footnote{Arhitektura temeljena na komponenata \engl{Component-Based Arhitecture} je tipičan način gradnje React aplikacija\citep{understandingCBA}.}
 Komponente su odgovorne i znaju samo za one komponente izravno ispod njih u hijerarhiji.
 Dvije komponente na odvojenim granama hijerarhije mogu prenositi podatke jedna drugoj ili metodom podizanja stanja\footnote{Vidi pododjeljak \ref{sec:lifting_state}.} ili korištenjem \emph{history} objekta iz \emph{react-router} paketa.
 Budući da komponente moraju biti ugnježđene u \emph{Router} komponentu kako bi koristile \emph{history} objekt, takvo prenošenje podataka je ustvari slično podizanju stanja jer također postavljaju stanje roditeljske komponente da bi izazvale promjene. 
@@ -940,30 +977,43 @@ Glavna ideja iza njih je da budu male i lagane kako bi se mogle ponovno koristit
 Takve komponente se često nazivaju prezentacijskima i dio gotovih se već nalazi u paketu \emph{react-bootstrap}.
 
 Komponente više u hijerarhiji su zadužene za definiranje stanja i dohvat podataka za niže komponente.
-Budući da ove komponente sadrže i definiraju odnos prezentacijskih komponenti, često se za njih koristi izraz \glqq sadržajne komponente\grqq ~ \engl{container components}.\citep{componentTypes}
+Budući da ove komponente sadrže i definiraju odnos prezentacijskih komponenti, često se za njih koristi izraz \glqq sadržajne komponente\grqq ~ \engl{container components}\citep{componentTypes}.
 Ovakve komponente su uglavnom jedinstvene, odnosno teško da će doći do njihovog ponovnog upotrebljavanja.
 
 \newpage
 
-% Raspodijela komponenti
-\subsection{Raspodijela komponenti}
+
+% Raspodjela komponenti
+\subsection{Raspodjela komponenti}
 
 Komponente su logički raspodijeljene hijerarhijski s \emph{App} kao najvišom, odnosno korijenskom komponentom.
 U nju je izravno ugniježđen \emph{Router} u kojem su definirane sve putanje.
 Izvan definicija putanja, no unutar komponente \emph{Router}, je jedino komponenta navigacijske trake (\emph{Navigation}).
-Razlog tomu je što se navigacijska traka nalazi u svim dijelovima aplikacije te, budući da je gotovo nepromjenjiva\footnote{Navigacijska traka prikazuje drukčije poveznice ovisno je li korisnik prijavljen u sustav ili ne.}, se želi izbjeći njeno ponovno crtanje pri promjeni putanje.
+Razlog tomu je što se navigacijska traka nalazi u svim dijelovima aplikacije te, budući da je gotovo nepromjenjiva\footnote{Navigacijska traka prikazuje drukčije poveznice ovisno je li korisnik prijavljen u sustav ili ne.}, želi se izbjeći njeno ponovno crtanje pri promjeni putanje.
+
+\razmakp
 
 Ispod navigacijske trake će se, ovisno o putanji, crtati jedna od sljedećih komponenti:
 \begin{itemize}
-  \item \emph{Main} -- glavno sučelje aplikacije
-  \item \emph{OfferContainer} -- sučelje u kojem korisnik upravlja vlastitim ponudama
-  \item \emph{ProfileContainer} -- pregled profila korisnika
-  \item \emph{ItemDetailsContainer} -- pregled detalja ponude
-  \item \emph{Login} -- obrazac za prijavu
-  \item \emph{Registration} -- obrazac za registraciju
+  \item \emph{Main} [\url{/home}] -- glavno sučelje aplikacije
+  \item \emph{OfferContainer} [\url{/offer}] -- sučelje u kojem korisnik upravlja vlastitim ponudama
+  \item \emph{ReservationContainer} [\url{/reservation}] -- sučelje u kojem korisnik upravlja zahtjevima (primljenim i poslanim)
+  \item \emph{ProfileContainer} [\url{/profile/:id}] -- pregled profila korisnika
+  \item \emph{ItemDetailsContainer} [\url{/item/:id}] -- pregled detalja ponude
+  \item \emph{Login} [\url{/login}] -- obrazac za prijavu
+  \item \emph{Registration} [\url{/registration}] -- obrazac za registraciju
 \end{itemize}
 \razmaks
 Svaka od njih, kao i komponenta \emph{Navigation}, definira vlastito stanje i ima pristup \emph{history} objektu\footnote{Vidi odjeljak \ref{sec:react-router}.}.
+
+\razmakp
+
+Daljnje komponente koje definiraju vlastito stanje su \emph{NewOfferForm} i \emph{EditProfileForm}.
+One nemaju vlastitu putanju, već su potkomonente od \emph{OfferContainer} i \emph{ProfileContainer}.
+
+Sve ostale komponente aplikacije ne definiraju vlastito stanje.
+Potrebne podatke im šalju roditeljske komponente, a sva definirana logika im služi isključivo na prikaz tih podataka.
+Primjeri takvih komponenti su \emph{ItemThumbnailContainer}, \emph{ItemThumbnail}, \emph{ItemList}, \emph{ReservationTable}, \emph{ImageColumn} \emph{TextColumn}, \emph{LoadingStatus}, \emph{FieldGroup} i komponente paketa \emph{react-bootstrap}.
 
 \razmakp
 \razmakp
@@ -971,41 +1021,169 @@ Svaka od njih, kao i komponenta \emph{Navigation}, definira vlastito stanje i im
 Fizički su komponente raspodijeljene svaka u svoju datoteku, koje su potom organizirane u jednu od sljedećih mapa, sukladno obrascima uporabe koje ispunjavaju:
 \begin{itemize}
   \item \emph{auth} -- autentifikacija korisnika
+    \begin{itemize}
+      \item \emph{Login}
+      \item \emph{Registration}
+    \end{itemize}
   \item \emph{item} -- prikaz ponuda, tj. stvari u ponudama
+    \begin{itemize}
+      \item \emph{ItemDetailsContainer}
+      \item \emph{ItemList}
+      \item \emph{ItemThumbnail}
+      \item \emph{ItemThumbnailContainer}
+    \end{itemize}
   \item \emph{offer} -- upravljanje ponudama
+    \begin{itemize}
+      \item \emph{NewOfferForm}
+      \item \emph{OfferContainer}
+    \end{itemize}
   \item \emph{profile} -- prikaz i upravljanje korisničkim podacima
+    \begin{itemize}
+      \item \emph{EditProfileForm}
+      \item \emph{ProfileContainer}
+    \end{itemize}
+  \item \emph{reservation} -- upravljanje zahtjevima
+    \begin{itemize}
+      \item \emph{ReservationContainer}
+      \item \emph{ReservationTable}
+    \end{itemize}
   \item \emph{shared} -- dijeljene prezentacijske komponente
+    \begin{itemize}
+      \item \emph{ImageColumn}
+      \item \emph{LoadingStatus}
+      \item \emph{TextColumn}
+    \end{itemize}
 \end{itemize}
-Izvan tih mapa su datoteke s ključnim komponentama aplikacije (\emph{App}, \emph{Navigation} i \emph{Main}) te komponente definirane vanjskim paketima.
-
+Izvan tih mapa su datoteke s ključnim komponentama aplikacije (\emph{App}, \emph{Navigation} i \emph{Main}) te komponente definirane u vanjskim paketima.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=14.5cm]{img/components-tree2.png}
-\caption{Pojednostavljen prikaz hijerarhije komponenti u aplikaciji -- zeleno: komponente iz \emph{react-bootstrap} ; ~ crveno: komponente koje definiraju vlastito stanje}
+\caption[caption]{Pojednostavljen\footnotemark ~ prikaz hijerarhije komponenti u aplikaciji -- zeleno: komponente iz \emph{react-bootstrap} ; ~ crveno: komponente koje definiraju vlastito stanje}
 \label{fig:components-tree}
 \end{figure}
+
+\footnotetext{Nedostaje hijerarhija od komponenti \emph{Reservation} i \emph{EditProfileForm} te su komponente koje koriste iste potkomponente grupirane.}
 
 \clearpage
 
 
+% Pomoćni moduli
+\subsection{Pomoćni moduli}
+
+Osim vanjskih biblioteka, komponente koriste pomoćne module za ostvarivanje specifičnih operacija u različitim dijelovima aplikacije.
+Dva takva modula su datoteke \emph{Auth.js} i \emph{Constants.js}.
+
+U datoteci \emph{Auth.js} je definirana klasa \emph{Auth} koja sadrži statičke metode koje se koriste za autentifikaciju i autorizaciju korisnika.
+Prijavom korisnika u aplikaciju, informacije o korisniku (id i token) spremaju se u \emph{localStorage}\footnote{Objekt za trajno spremanje podataka u pregledniku, svojstvo \emph{Window} objekta. Više na: \url{https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage}} kako bi se mogle dohvatiti iz različitih komponenti i u različitim instancama aplikacije u istom pregledniku.
+Klasa \emph{Auth} definira metode za spremanje, dohvat i brisanje tih informacija.
+Ona enkapsulira logiku upravljanja podacima identiteta korisnika što omogućuje jednostavnu izmjenu tih funkcionalnosti.
+U slučaju da se u kasnijoj nadogradnji želi preći na neki drugi spremnik, kao što su primjerice kolačići \engl{cookies}\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies}}, potrebno je promjeniti samo kod u datoteci \emph{Auth.js}.
+
+Datoteka \emph{Constants.js} isporučuje nepromjenjive objekte komponentama aplikacije, odnosno služi kao spremnik globalnih konstanti (bez da se stvarno deklariraju u globalnom dosegu).
+Jedna takva konstanta je lista kategorija sadržaja (\emph{ITEM\_TYPES}) koja se koristi u komponentama \emph{Main} i \emph{NewOfferForm}.
+U prvoj komponenti služi da stvoriti kartičnu navigaciju za filtriranje ponuda\footnote{Vidi slijedeći odjeljak.}, a u drugoj za definirati koje je kategorije sadržaj pri stvaranju ponude.
+
+\newpage
+
+
+% Glavno sučelje
 \section{Glavno sučelje}
 
-\section{Autorizacija i autentifikacija}
+Glavno sučelje (na slici \ref{fig:screenshot-main}) je sučelje koje svi korisnici prvo ugledaju kada otvore aplikaciju.
+Ono služi za pregled i pronalazak sadržaja, odnosno ponuda, te je jedino sučelje koje u potpunosti nudi iste mogućnosti i javnom i autoriziranom korisniku.
+Dapače, jedina razlika u onome što vide javni i autorizirani korisnici je navigacija, koja je ostvarena kao zasebna komponenta (\emph{Navigation}) koja se prikazuje u svim sučeljima aplikacije i mijenja svoj izgled ovisno o tipu korisnika.
 
-\section{Upravljanje sadržajem}
+\razmaks
+
+\begin{figure}[htb]
+\centering
+\fbox{\includegraphics[width=14.2cm]{img/screenshot1_3.png}}
+\caption{Glavno sučelje aplikacije}
+\label{fig:screenshot-main}
+\end{figure}
+
+\razmaks
+
+Izgled sučelja je modeliran pomoću komponente \emph{Main}.
+U njoj je definirano stanje, dohvat podataka i navigacija po kategorijama sadržaja pomoću kartica \engl{tabs}.
+Također je definirana i logika filtracije sadržaja kojeg šalje kao listu u komponentu \emph{ItemThumbnailContainer}.
+
+Sadržaj se filtrira navigacijom karticama po kategoriji i s obzirom na upit iz tražilice komponente \emph{Navigation}. 
+Budući da se tražilica nalazi u navigaciji, komunikacija s komponentom \emph{Main} je ostvarena pomoću \emph{history} objekta, odnosno preusmjeravanjem korisnika na novu rutu.
+Upisom teksta u tražilicu korisnika se preusmjerava rutu s upitom (npr. \glqq \url{/home?upit}\grqq ) koja sadrži informaciju o filtraciji.
+Potom se filtrira sav sadržaj koji ne sadrži upisani tekst u svom imenu, niti u početku svog opisa.
+Filtracija se jednostavno resetira ponovnim klikom na ime aplikacije (u ovom slučaju je radni naslov \emph{Promoetej}) u navigaciji, odnosno odlaskom na rutu \glqq \url{/home}\grqq .
+
+Slanjem liste sadržaja komponenti \emph{ItemThumbnailContainer}, ona stvara potreban broj elemenata komponente \emph{ItemThumbnail}, u kojima je definiran prikaz za elemente liste, te se brine o njihovom razmještaju.
+U svakom \emph{ItemThumbnail} elementu je definirana poveznica na \emph{ItemDetails} komponentu za sadržaj kojeg element prikazuje.
+
+\razmakp
+
+Dohvat podataka vrši se u metodi \emph{componentDiDMount}\footnote{Metoda životnog ciklusa komponente. Vidi pododjeljak \ref{sec:components}.} te se podaci spremaju u stanje komponente, što je preporučen obrazac korištenja te metode\citep{reactDocsComponent}.
+Dok traje ta operacija, na sučelju crta se komponenta \emph{LoadingStatus} kako bi se korisnika obavijestilo da je dohvat podataka u tijeku.
+Ista komponenta crta se i u slučaju greške u dohvatu podataka, samo se korisniku prikazuje poruka da je došlo do greške.
+
+\razmakp
+\begin{lstlisting}[language=JavaScript, caption={Metoda \emph{render} komponente \emph{Main}}, label={lst:main_render}]
+render() {
+  let tabs = ITEM_TYPES.map((type, index) => (
+    <Tab eventKey={index+2} title={type.toUpperCase()} />
+  ));
+  tabs.unshift(<Tab eventKey={1} title="SVE" />);
+
+  return (
+    <div>
+      <Tabs defaultActiveKey={1}
+            onSelect={this.handleSelectCategory}>
+        {tabs}
+      </Tabs>
+      <LoadingStatus isError={this.state.isError}
+                     isLoading={this.state.isLoading} />
+      <ItemThumbnailContainer items={this.getFilteredItems()} />
+    </div>
+  );
+}
+\end{lstlisting}
+\razmaks
+
+\newpage
 
 
-\chapter{Upute za korištenje}
+\section{Upravljanje ponudama}
+
+Za upravljanje ponudama su primarno zadužene komponenta \emph{OfferContainer} i njena potkomponenta \emph{NewOfferForm}.
+Prva daje pregled svih ponuda koje je korisnik unio u sustav i tuđih sadržaja koje ima u vlasništvu, dok druga služi za dodavanje nove ponude u sustav.
+Pristupit im može isključivo autorizirani korisnik klikom u navigaciji na \glqq Vlastite ponude\grqq ~, odnosno na ruti \glqq \url{/offer}\grqq .
+
+\razmaks
+
+\begin{figure}[htb]
+\centering
+\fbox{\includegraphics[width=14.2cm]{img/screenshot2_3.png}}
+\caption{Sučelje za upravljanje ponudama}
+\label{fig:screenshot-main}
+\end{figure}
+
+\razmaks
+
+\newpage
+
+
+\section{Upravljanje zahtjevima}
+
 
 
 \chapter{Zaključak}
 Zaključak.
 
 
+% Literatura
 \bibliography{literatura}
 \bibliographystyle{fer}
 
+
+% Sažetak
 \begin{sazetak}
 Tema ovog rada je razvoj korisničke strane aplikacije za razmjenu multimedijskih sadržaja koristeći moderne alate, biblioteke i radna okruženja.
 Korisničkog sučelje je izgrađeno korištenjem JavaScript biblioteke React.
@@ -1017,7 +1195,7 @@ Cilj rada je ostvarenje jednostavnog i intuitivnog korisničkog sučelja program
 \kljucnerijeci{korisničko sučelje, JavaScript, React}
 \end{sazetak}
 
-% TODO: Navedite naslov na engleskom jeziku.
+% Abstract
 \engtitle{Multimedia Exchange Library User Interface}
 \begin{abstract}
 The subject of this thesis is the development of a client-side application for a multimedia exchange library using modern front-end tools, libraries and frameworks.
@@ -1029,5 +1207,7 @@ The goal of this thesis is the realization of a simple and intuitive user interf
 
 \keywords{UI, JavaScript, React}
 \end{abstract}
+
+
 
 \end{document}
