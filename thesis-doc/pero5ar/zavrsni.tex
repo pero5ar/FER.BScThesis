@@ -104,6 +104,7 @@
 \tableofcontents
 
 
+
 % Uvod
 \chapter{Uvod}
 
@@ -123,7 +124,7 @@ To je, između ostalog, slučaj s jako specifičnim sadržajima, kao što su fak
 
 Jeste li ikad pokušali naći podatke na hrvatskom jeziku o nekoj knjizi, a da ona nije dio popisa za lektiru?
 Jeste li ikad tražili funkcionalni primjerak videoigre izrađene u devedesetima?
-Jeste li se ikad mučili s nalaženjem neke knjige koju ste htjeli pročitat?
+Jeste li se ikad mučili s nalaženjem neke knjige koju ste htjeli pročitati?
 Da je niste mogli naći u lokalnoj knjižnici ni u antikvarijatu, a u knjižarama je bila ili preskupa ili nije bila na policama, već bi se morala čekati više od mjesec dana da stigne putem narudžbe?
 
 Vjerujem da smo se mnogi barem jednom našli u takvoj ili sličnoj situaciji.
@@ -140,7 +141,7 @@ Aplikacija čije je korisničko sučelje tema ovog rada ima za cilj riješiti up
 
 Ideja aplikacije je omogućiti korisnicima u hrvatskom govornom području da ponude svoje knjige, skripte, stripove, CD-ove i sl. na posuđivanje.
 Odnosno, omogućiti drugim korisnicima da pronađu takav sadržaj.
-Isto kao što je Prometej besebično ponudio vatru ljudima, tako korisnici aplikacije mogu drugim korisnicima ponuditi ono što imaju i time stvoriti \emph{virtualnu knjižnicu} za razmjenu multimedijskog sadržaja.
+Isto kao što je Prometej nesebično ponudio vatru ljudima, tako korisnici aplikacije mogu drugim korisnicima ponuditi ono što imaju i time stvoriti \emph{virtualnu knjižnicu} za razmjenu multimedijskog sadržaja.
 
 \razmakp
 
@@ -151,6 +152,7 @@ Ključna je biblioteka React opisana u potpoglavlju \ref{sec:react}.
 
 Poslije korištenih tehnologija, u trećem poglavlju, je detaljno opisan zadatak rada te su specificirani zahtjevi, dok se opis same implementacije zadatka nalazi se u četvrtom poglavlju.
 Nakon implementacije, u petom i zadnjem poglavlju, slijedi zaključak cjelokupnog rada.
+
 
 
 % Korištene tehnologije
@@ -170,7 +172,7 @@ U svrhu razumijevanja koda programskog rješenja, u okviru rada će se prvo ukra
 % Ključne riječi let i const
 \subsection{Ključne riječi \emph{let} i \emph{const}}
 
-Standardna ključna riječ za definiranje varijabli u JavaScriptu - \emph{var} ima nelogično ponašanje unutar djelokruga bloka \engl{block scope}. Promotrimo sljedeći primjer:
+Standardna ključna riječ za definiranje varijabli u JavaScriptu - \emph{var} ima neočekivano ponašanje unutar djelokruga bloka \engl{block scope}. Promotrimo sljedeći primjer:
 
 \razmakp
 \begin{lstlisting}[language=JavaScript, caption={Primjer djelokruga \emph{var} varijable}]
@@ -206,7 +208,7 @@ function varTest() {
 Sada se dobije očekivano ponašanje. Varijabla unutar \emph{if}-bloka je nova varijabla koja je unutar svog djelokruga zasjenila varijablu u vanjskom bloku.
 
 Također, u slučaju da se u ovom kodu (isječak koda \ref{lst:let_example}) pokušalo ponovno deklarirati varijablu \emph{x} unutar istog bloka, bila bi bačena sintaksna greška.
-Varijabla deklarirana ključnom riječi \emph{var} ne baca sintaksne greške, kod nje je dopušteno redeklarirati varijable u istom bloku.
+Varijabla deklarirana ključnom riječi \emph{var} ne izaziva sintaksne greške, kod nje je dopušteno redeklarirati varijable u istom bloku.
 Takvo ponašanje može prouzročiti neprimjetne greške pri pisanju koda koje se teško pronalaze kasnije.
 
 \razmakp
@@ -222,16 +224,16 @@ console.log(this.y); // undefined
 \end{lstlisting}
 \razmaks
 
-I u ovom slučaju je ponašanje \emph{let} varijable logičnije. Samo zato što se varijabla koristi unutar neke funkcije, odnosno objekta, ne znači da je ideja tu varijablu pridružiti kao svojstvo objekta u kojem se nalazi.
+I u ovom slučaju je ponašanje \emph{let} varijable logičnije. Samo zato što se varijabla koristi unutar neke funkcije, odnosno objekta, ne znači da je cilj tu varijablu pridružiti kao svojstvo objekta u kojem se nalazi.
 
 \razmakp
 
-Budući da se \emph{let} varijable ponašaju više u skladu s očekivanjem, pogotovo ako imamo podlogu u programskom jeziku koji spada u obitelj jezika C \engl{C-family programming languages}, i da bacaju iznimke u slučaju grešaka, u novijem standardu se preporuča izbjegavanje korištenja ključne riječi \emph{var} u svim situacijama.
+Budući da se \emph{let} varijable ponašaju više u skladu s očekivanjem, pogotovo ako imamo podlogu u programskom jeziku koji spada u obitelj jezika C \engl{C-family programming languages}, i da bacaju iznimke u slučaju grešaka, u novijem standardu se preporučuje izbjegavanje korištenja ključne riječi \emph{var} u svim situacijama.
 
 \razmakp
 \razmakp
 
-Kako u starim verzijama nije bilo drugog načina deklariranja varijable dalje od ključne riječi \emph{var} i globalnih varijabli, programer je morao sam paziti da ne promjeni vrijednost varijabli koje si je odredio kao konstante
+Kako u starim verzijama nije bilo drugog načina deklariranja varijable dalje od ključne riječi \emph{var} i globalnih varijabli, programer je morao sam paziti da ne promjeni vrijednost varijabli koje si je odredio kao konstante.
 U novom standardu je taj problem riješen ključnom riječi \emph{const}\citep{MDNConst}.
 
 \razmakp
@@ -250,12 +252,12 @@ Po pitanju djelokruga, ponašanje konstanti je identično ponašanju \emph{let} 
 \subsection{Klase i nasljeđivanje}
 
 Glavna novost u ECMAScript 2015 je uvođenje klasa.
-Prethodno se nasljeđivanje u JavaScriptu ostvarivalo kreiranjem objekata iz postojećih objekata te dodavanju novih metoda i atributa novostvorenom objektu.
-Odnosno svaki objekt u JavaScriptu ima skriveno svojstvo prototip \engl{prototype} koje sadrži poveznicu do nekog drugog objekta, putem kojeg možemo ostvariti nasljeđiavnje\citep{MDNPrototype}.
+Prethodno se nasljeđivanje u JavaScriptu ostvarivalo kreiranjem objekata iz postojećih objekata te dodavanjem novih metoda i atributa novostvorenom objektu.
+Svaki objekt u JavaScriptu ima skriveno svojstvo prototip \engl{prototype} koje sadrži poveznicu do nekog drugog objekta, putem kojeg možemo ostvariti nasljeđivanje\citep{MDNPrototype}.
 Takva mehanika je puno moćnija od korištenja klasa, odnosno nudi puno više fleksibilnosti, no istovremeno uzrokuje puno nejasniju strukturu koda.
 
 Klase u novom standardu su ostvarene kao poseban oblik funkcija\citep{MDNClass}.
-Oba se objekta deklariraju i rukuju na identičan način, samo za različite svrhe.
+Oba objekta se deklariraju i njima se rukuje na identičan način, samo za različite svrhe.
 Pri prevođenju JavaScripta pisanog u novom standardu u stariji (zbog kompatibilnosti sa starijim preglednicima) klase se prevode u funkcije.
 (Primjer: isječak koda \ref{lst:class_example_old_js} - izrađen putem prevoditelja Babel\footnote{\url{https://babeljs.io}}).
 
@@ -288,7 +290,7 @@ var Rectangle = function Rectangle(height, width) {
 \razmaks
 
 Nasljeđivanje klasa postiže se sintaksom sličnom programskom jeziku Java.
-Ključna riječ kojom se definira nasljeđivanje je \emph{extends}, dok se nadklasa poziva s ključnom riječi \emph{super}.
+Ključna riječ kojom se definira nasljeđivanje je \emph{extends}, dok se natklasa poziva s ključnom riječi \emph{super}.
 
 \razmakp
 \begin{lstlisting}[language=JavaScript, caption={Primjer naljeđivanja}]
@@ -322,7 +324,7 @@ l.speak();
 Obećanje \engl{Promise} je poseban objekt koji predstavlja izvršavanje asinkrone operacije.
 Ideja je da se neka asinkrona operacija (npr. dohvat podataka s poslužitelja) omota u obećanje kako bi se definiralo što će se izvršiti u slučaju uspjeha ili neuspjeha.
 Operacija koja se izvršava nakon obećanja može ponovno biti obećanje.
-To nizanje obećanja \engl{chaining}, koje se ostvaruje putem funkcije \emph{then}, je zgodno rješenje kada logika zahtjeva višestruko ugnježđivanje funkcija povratnog poziva \engl{callback function}\citep{MDNUsingPromises}.
+To nizanje obećanja \engl{chaining}, koje se ostvaruje putem funkcije \emph{then}, zgodno je rješenje kada logika zahtjeva višestruko ugnježđivanje funkcija povratnog poziva \engl{callback function}\citep{MDNUsingPromises}.
 Primjer toga je u sljedećem isječku koda (\ref{lst:callback_vs_promises})
 
 \razmakp
@@ -353,7 +355,7 @@ doSomething()
 
 Životni ciklus objekta obećanja možemo pojednostavljeno opisati dijagramom na slici \ref{fig:promise_lifecycle}.
 Kada se objekt stvori, on je u stanju iščekivanja \engl{pending}.
-Ovisno o uspješnosti operacije prelazi u stanja \emph{ispunjen} \engl{fufilled} ili \emph{odbačen} \engl{rejected}.
+Ovisno o uspješnosti operacije prelazi u stanja \emph{ispunjen} \engl{fulfilled} ili \emph{odbačen} \engl{rejected}.
 Iz tih stanja može vratiti neku povratnu vrijednost koja se onda omata kao novo obećanje.
 
 \begin{figure}[htb]
@@ -424,7 +426,7 @@ React je JavaScript biblioteka otvorenog koda namijenjena brzoj i jednostavnoj i
 U izvorima se biblioteka također može naći pod nazivima \emph{React.js} i \emph{ReactJS}, dok je React Native radni okvir za razvoj mobilnih aplikacija u JavaScriptu na sličan način kako se web aplikacije grade u Reactu.
 
 Bitno je za naglasiti da, iako je React biblioteka \engl{library}, nije u potpunosti netočno zvati je radnim okvirom \engl{framework}.
-Tokom vremena nagomilalo se mnoštvo biblioteka i radnih okvira za korištenje sa samim Reactom, da se pod izrazom \glqq React\grqq često podrazumijeva i njihovo korištenje, što daje dojam cjelokupnog radnog okvira.
+Tijekom vremena nagomilalo se mnoštvo biblioteka i radnih okvira za korištenje sa samim Reactom, da se pod izrazom \glqq React\grqq ~ često podrazumijeva i njihovo korištenje, što daje dojam cjelokupnog radnog okvira.
 No, po svojoj definiciji je biblioteka\citep{reactGithub}.
 
 \razmakp
@@ -505,7 +507,7 @@ Uz stanje postoji još jedno ugrađeno svojstvo komponente, a to je \emph{props}
 Ono se koristi kao objekt putem kojeg se predaju argumenti iz više komponente u nižu.
 Primjer takvog korištenja je komponenta koja sadrži listu drugih komponenti, a treba odrediti nazive i ključeve potkomponenti.
 U tom slučaju se, pri stvaranju potkomponenti kojima se nadjačava konstruktor, mora paziti da se koristi oblik konstruktora kakav je prikazan u isječku koda \ref{lst:component_props_example}.
-Ako se ne definira vlastiti konstruktor, taj oblik konstruktora nasljeđuje se iz nadklase\footnote{U isječku koda \ref{lst:component_props_example} je pisanje konstruktora nepotrebno.}.
+Ako se ne definira vlastiti konstruktor, taj oblik konstruktora nasljeđuje se iz natklase\footnote{U isječku koda \ref{lst:component_props_example} je pisanje konstruktora nepotrebno.}.
 
 \razmakp
 \begin{lstlisting}[language=JavaScript, caption={Primjer komponente s \emph{props}}, label={lst:component_props_example}]
@@ -625,7 +627,7 @@ U interaktivnoj aplikaciji često je potrebno na promjenu jednog elementa mijenj
 Primjerice, na unos teksta u okvir za pretraživanje filtrirati retke tablice s obzirom na neku od vrijednosti.
 U Reactu se ta funkcionalnost postiže podizanjem stanja\citep{reactDocsLiftStateUp}.
 
-Na istom tom primjeru, ako su komponente okvira za unost teksta i tablice ugniježđene u zajedničkoj roditeljskoj komponenti, vrijednost teksta koji se unosi i lista s podacima za retke tablice bi se definirali kao atributi stanja te roditeljske komponente.
+Na istom tom primjeru, ako su komponente okvira za unos teksta i tablice ugniježđene u zajedničkoj roditeljskoj komponenti, vrijednost teksta koji se unosi i lista s podacima za retke tablice bi se definirali kao atributi stanja te roditeljske komponente.
 Ugniježđene komponente bi putem \emph{props} primile te atribute iz roditeljske komponente.
 Pri tome, komponenta koja uzrokuje promjenu stanja, što je u ovom slučaju komponenta u koju se unosi tekst, mora primiti i referencu na funkciju koju će pozvati kad se unos promijeni.
 Ta funkcija se nalazi u roditeljskoj komponenti i postavlja stanje na novu vrijednost, što uzrokuje ponovno crtanje ugniježđenih elemenata, odnosno komponenti.
@@ -642,7 +644,7 @@ U opisanom primjeru su podaci vrijednosti koje se šalju elementima, dok je akci
 
 Npm\footnote{Upravitelj paketa za JavaScript, primarno korišten uz Node.js.} paket \emph{create-react-app} omogućuje stvaranje podešene React aplikacije, u svrhu bržeg i lakšeg razvoja nove aplikacije.
 Aplikacija stvorena ovim paketom ima podešen prevoditelj \emph{Babel}\footnote{Prevodi novije JavaScript funkcionalnosti u stari standard, \url{http://babeljs.io} }, upravitelj modulima \emph{webpack}\footnote{Sažima sve module i pakete o kojima ovise u statičke resurse, \url{https://webpack.github.io} } i mnoge druge dodatke koji su često potrebni u razvoju React aplikacija\citep{createReactAppGithub}.
-Podešene su također i skripte za pokretanje, testiranje i izradu produkcijske verzije.
+Podešene su također skripte za pokretanje, testiranje i izradu produkcijske verzije.
 
 Sve te postavke su skrivene, a programer nakon stvaranja aplikacije vidi strukturu kao u slici \ref{fig:app-structure}\footnote{Mapa novostvorene aplikacije na disku zauzima prostor od otprilike 100 MB.}.
 U slučaju potrebe za promjenom predefiniranih postavki pokreće se skripta \glqq \emph{npm run eject}\grqq ~ koja nepovratno otkriva sve konfiguracijske datoteke.
@@ -709,7 +711,7 @@ U slučaju da u prethodno navedenom primjeru nije korišten \emph{exact}, na put
 
 \emph{Route} komponente se mogu dodatno ugnijezditi i u komponentu \emph{Switch}.
 \emph{Switch} komponenta definira logiku da se crta samo komponenta prvog \emph{Route} koji se podudara s putanjom.
-Korištenjem ove logike može se definirati i posljednja \emph{Route} komponeta za pokrivanje slučaja neočekivanih putanja, kao što je prikazano u isječku koda \ref{lst:react_router_switch}.
+Korištenjem ove logike može se definirati i posljednja \emph{Route} komponenta za pokrivanje slučaja neočekivanih putanja, kao što je prikazano u isječku koda \ref{lst:react_router_switch}.
 U tom primjeru se također koristi \emph{exact}, jer bi se u protivnom na svim rutama koje počinju s \glqq / \grqq ~ odabrala prva komponenta.
 
 \razmakp
@@ -795,14 +797,14 @@ Isječak koda \ref{lst:fetch_get} pokazuje primjer korištenja metode \emph{fetc
 Metoda prima putanju do željenog resursa i vraća obećanje koje sadrži objekt \emph{Response} koji predstavlja HTTP odgovor \engl{response}.
 
 U primjeru se zatim primljeni objekt parsira u JSON objekt pozivanjem metode \emph{json}.
-No, ovisno o prirodi resursa, mogla se primjeniti bilo koja od navedenih metoda: \emph{json}, \emph{text}, \emph{blob}, \emph{formData}, \emph{arrayBuffer}, \emph{redirect} ili \emph{clone}\citep{fetch}.
+No, ovisno o prirodi resursa, mogla se primijeniti bilo koja od navedenih metoda: \emph{json}, \emph{text}, \emph{blob}, \emph{formData}, \emph{arrayBuffer}, \emph{redirect} ili \emph{clone}\citep{fetch}.
 Navedene metode mogu se izvršavati na objektima tipa \emph{Request} i \emph{Response}, što znači da se mogu koristiti i pri slanju zahtjeva.
 To čini korištenje ne-tekstualnih podataka puno jednostavnijim nego što je to bilo s XMLHttpRequest.
 
 \razmakp
 
 Na isječku koda \ref{lst:fetch_post} prikazan je HTTP POST zahtjev \engl{HTTP POST request} izveden korištenjem metode \emph{fetch}.
-Kao drugi parametar šalje se \emph{init} objekt u kojemu se tip metode postavlja na POST\footnote{Podrazumjevana metoda je GET pa zato nije naveden tip metode u primjeru u isječku koda \ref{lst:fetch_get}.}.
+Kao drugi parametar šalje se \emph{init} objekt u kojemu se tip metode postavlja na POST\footnote{Podrazumijevana metoda je GET pa zato nije naveden tip metode u primjeru u isječku koda \ref{lst:fetch_get}.}.
 Osim metode, po potrebi mogu se postaviti dodatni atributi, kao što su npr. \emph{mode} i \emph{headers} atributi.
 
 \razmakp
@@ -824,12 +826,13 @@ fetch('/api/postUrl', {
 % Specifikacija
 \chapter{Specifikacija}
 
+
 % Opis zadatka
 \section{Opis zadatka}
 
 Knjižnica za razmjenu multimedijskog sadržaja je web aplikacija, odnosno sustav koji korisnicima omogućuje da s lakoćom pronalaze ili stavljaju na ponudu fizičke kopije multimedijskog sadržaja.
 Riječ je o predmetima poput knjiga, skripti za fakultete, CD-ova ili DVD-ova kojih se vlasnici ne žele riješiti, no rado bi na legalan i jednostavan način podijelili s drugima.
-Ovaj sustav tim osobama daje način da ponude svoje predmete na posuđivanje, poput nekakvog oglasa, te pronađu ljude koji su zainteresirani za taj sadržaj.
+Ovaj sustav tim osobama daje način da ponude svoje predmete na posuđivanje poput oglasa, te pronađu ljude koji su zainteresirani za taj sadržaj.
 Također nudi i osobama s druge strane jednostavan pronalazak sadržaja kojeg traže i način, odnosno informacije kako kontaktirati vlasnika.
 
 \razmakp
@@ -857,7 +860,7 @@ Korisničko sučelje mora biti ostvareno modularno i po načelima dobrog oblikov
 % Funkcionalni zahtjevi
 \section{Funkcionalni zahtjevi}
 
-Sustav nema u svjoj pozadini definiranu podjelu korisnika, odnosno nema hijerarhije ni različitih uloga, već je svaki korisnik zapisan u bazi samo \emph{korisnik}. No, s perspektive funkcionalnih zahtjeva sučelja aplikacije moramo napraviti razliku između dvije vrste korisnika -- \emph{javni} i \emph{autorizirani}.
+Sustav u svojoj pozadini nema definiranu podjelu korisnika, odnosno nema hijerarhije ni različitih uloga, već je svaki korisnik zapisan u bazi samo \emph{korisnik}. No, s perspektive funkcionalnih zahtjeva sučelja aplikacije moramo napraviti razliku između dvije vrste korisnika -- \emph{javni} i \emph{autorizirani}.
 
 Javni korisnik je bilo koja osoba koja je ušla u aplikaciju. Odnosno riječ je o korisniku koji nije prijavljen, tj. čije informacije nisu zapisane u pozadini aplikacije. Takav korisnik ima samo pristup javnim dijelovima aplikacije, odnosno može samo pregledavati ponudu sadržaja. 
 
@@ -969,10 +972,10 @@ Uz navedene funkcionalne zahtjeve korisnika, aplikacija mora također ispuniti s
 % Arhitektura i dizajn
 \section{Arhitektura i dizajn}
 
-Arhitektura aplikacije temelji se na hijerarhiskoj raspodijeli komponenti\footnote{Arhitektura temeljena na komponenata \engl{Component-Based Arhitecture} je tipičan način gradnje React aplikacija\citep{understandingCBA}.}.
+Arhitektura aplikacije temelji se na hijerarhijskoj raspodijeli komponenti\footnote{Arhitektura temeljena na komponenata \engl{Component-Based Arhitecture} je tipičan način gradnje React aplikacija\citep{understandingCBA}.}.
 Komponente su odgovorne i znaju samo za one komponente izravno ispod njih u hijerarhiji.
 Dvije komponente na odvojenim granama hijerarhije mogu prenositi podatke jedna drugoj ili metodom podizanja stanja\footnote{Vidi pododjeljak \ref{sec:lifting_state}.} ili korištenjem \emph{history} objekta iz \emph{react-router} paketa.
-Budući da komponente moraju biti ugnježđene u \emph{Router} komponentu kako bi koristile \emph{history} objekt, takvo prenošenje podataka je ustvari slično podizanju stanja jer također postavljaju stanje roditeljske komponente da bi izazvale promjene. 
+Budući da komponente moraju biti ugniježđene u \emph{Router} komponentu kako bi koristile \emph{history} objekt, takvo prenošenje podataka je ustvari slično podizanju stanja jer također postavljaju stanje roditeljske komponente da bi izazvale promjene. 
 
 Najniže komponente u hijerarhiji enkapsuliraju elemente korisničkog sučelja te idejno ne implementiraju stanje i logiku dalje od toga kako će prikazati podatke.
 Glavna ideja iza njih je da budu male i lagane kako bi se mogle ponovno koristiti.
@@ -1084,7 +1087,7 @@ U slučaju da se u kasnijoj nadogradnji želi preći na neki drugi spremnik, kao
 
 Datoteka \emph{Constants.js} isporučuje nepromjenjive objekte komponentama aplikacije, odnosno služi kao spremnik globalnih konstanti (bez da se stvarno deklariraju u globalnom dosegu).
 Jedna takva konstanta je lista kategorija sadržaja (\emph{ITEM\_TYPES}) koja se koristi u komponentama \emph{Main} i \emph{NewOfferForm}.
-U prvoj komponenti služi da stvoriti kartičnu navigaciju za filtriranje ponuda\footnote{Vidi slijedeći odjeljak.}, a u drugoj za definirati koje je kategorije sadržaj pri stvaranju ponude.
+U prvoj komponenti služi da stvoriti kartičnu navigaciju za filtriranje ponuda\footnote{Vidi sljedeći odjeljak.}, a u drugoj za definirati koje je kategorije sadržaj pri stvaranju ponude.
 
 \newpage
 
@@ -1115,7 +1118,7 @@ Sadržaj se filtrira navigacijom karticama po kategoriji i s obzirom na upit iz 
 Budući da se tražilica nalazi u navigaciji, komunikacija s komponentom \emph{Main} je ostvarena pomoću \emph{history} objekta, odnosno preusmjeravanjem korisnika na novu rutu.
 Upisom teksta u tražilicu korisnika se preusmjerava rutu s upitom (npr. \glqq \url{/home?upit}\grqq ) koja sadrži informaciju o filtraciji.
 Potom se filtrira sav sadržaj koji ne sadrži upisani tekst u svom imenu, niti u početku svog opisa.
-Filtracija se jednostavno resetira ponovnim klikom na ime aplikacije (u ovom slučaju je radni naslov \emph{Promoetej}) u navigaciji, odnosno odlaskom na rutu \glqq \url{/home}\grqq .
+Filtracija se jednostavno resetira ponovnim klikom na ime aplikacije (u ovom slučaju je radni naslov \emph{Prometej}) u navigaciji, odnosno odlaskom na rutu \glqq \url{/home}\grqq .
 
 Slanjem liste sadržaja komponenti \emph{ItemThumbnailContainer}, ona stvara potreban broj elemenata komponente \emph{ItemThumbnail}, u kojima je definiran prikaz za elemente liste, te se brine o njihovom razmještaju.
 U svakom \emph{ItemThumbnail} elementu je definirana poveznica na \emph{ItemDetails} komponentu za sadržaj kojeg element prikazuje.
